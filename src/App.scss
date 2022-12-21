@@ -20,10 +20,13 @@
 
 #display-area-left {
 	width: 66%;
+	padding-right: 1rem;
+	overflow: hidden;
 }
 
 #display-area-right {
 	width: 33%;
+	overflow: hidden;
 }
 
 .btn {

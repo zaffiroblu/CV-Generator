@@ -26,35 +26,48 @@ function B_CV_PREVIEW({
 	experienceData,
 }: propsFromParent) {
 	return (
-		<div className='d-flex flex-row mx-2' id='display-area'>
-			<div
-				className='d-flex flex-column align-items-start m-2'
-				id='display-area-left'
-			>
-				<C_PER_DATA_DISPLAY {...personalData} />
-				{sectionData.map((sectionDataItem, sectionDataIndex) => (
-					<C_SECTION_DISPLAY
-						key={sectionDataIndex}
-						{...sectionDataItem}
-					/>
-				))}
-				{experienceData.map(
-					(experienceDataItem, experienceDataIndex) => (
-						<C_EXPERIENCE_DISPLAY
-							key={experienceDataIndex}
-							{...experienceDataItem}
+		<div>
+			<div className='d-flex flex-row mx-2' id='display-area'>
+				<div
+					className='d-flex flex-column align-items-start m-2'
+					id='display-area-left'
+				>
+					<C_PER_DATA_DISPLAY {...personalData} />
+					{sectionData.map((sectionDataItem, sectionDataIndex) => (
+						<C_SECTION_DISPLAY
+							key={sectionDataIndex}
+							{...sectionDataItem}
 						/>
-					)
-				)}
+					))}
+					{experienceData.map(
+						(experienceDataItem, experienceDataIndex) => (
+							<C_EXPERIENCE_DISPLAY
+								key={experienceDataIndex}
+								{...experienceDataItem}
+							/>
+						)
+					)}
+				</div>
+				<div
+					className='d-flex flex-column align-items-start m-2'
+					id='display-area-right'
+				>
+					<C_CONTACT_DISPLAY {...contactData} />
+					{skillData.map((skillDataItem, skillDataIndex) => (
+						<C_SKILLS_DISPLAY
+							key={skillDataIndex}
+							{...skillDataItem}
+						/>
+					))}
+				</div>
 			</div>
-			<div
-				className='d-flex flex-column align-items-start m-2'
-				id='display-area-right'
-			>
-				<C_CONTACT_DISPLAY {...contactData} />
-				{skillData.map((skillDataItem, skillDataIndex) => (
-					<C_SKILLS_DISPLAY key={skillDataIndex} {...skillDataItem} />
-				))}
+			<div className='d-flex flex-row mx-2' id='display-area'>
+				<div
+					className='d-flex flex-column align-items-start m-2'
+					id='display-area-left'
+				>
+					<C_PER_DATA_DISPLAY {...personalData} />
+				</div>
 			</div>
 		</div>
 	);
