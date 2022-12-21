@@ -1,0 +1,125 @@
+:root {
+	--height-1: 90vh;
+	--height-2: 100vh;
+	--width-1: 66%;
+}
+
+#input-area {
+	overflow: scroll;
+	max-height: 100vh;
+}
+
+#display-area {
+	height: calc(var(--height-1));
+	width: calc(var(--height-1) * 0.707);
+	margin: 2%;
+	padding: 3%;
+	border-style: solid;
+	word-break: break-word;
+}
+
+#display-area-left {
+	width: 66%;
+}
+
+#display-area-right {
+	width: 33%;
+}
+
+.btn {
+	margin: 0.2rem;
+}
+
+.CV-header {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.CV-subheader {
+	font-size: 0.8rem;
+	margin-bottom: 0.8rem;
+}
+
+.classSidebarHeader {
+	font-size: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.1rem;
+	font-weight: bold;
+}
+
+.classSidebarText {
+	font-size: 0.5rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.2rem;
+}
+
+.classSectionHeader {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	color: #474444;
+	font-weight: 400;
+	margin-bottom: 0.2rem;
+}
+
+.classEntryHeader {
+	font-size: 0.6rem;
+	font-weight: 600;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+}
+
+.classEntrySubheader {
+	font-size: 0.6rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+}
+
+.classEntryTimeline {
+	font-size: 0.4rem;
+	font-style: italic;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+}
+
+.per-contact-class {
+	padding: 5px;
+	border: 1px solid #ec73ec;
+	border-left: 5px solid #ec73ec;
+	background: #faf0fa;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.skills-class {
+	padding: 5px;
+	border: 1px solid #e0a73c;
+	border-left: 5px solid #e0a73c;
+	background: #faf2e2;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.section-class {
+	padding: 5px;
+	border: 1px solid #09c265;
+	border-left: 5px solid #09c265;
+	background: #dbefe5;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.experience-class {
+	padding: 5px;
+	border: 1px solid #e0a73c;
+	border-left: 5px solid #e0a73c;
+	background: #faf2e2;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+// .classSectionDetails {
+// 	font-size: 0.7rem;
+// }
+
+@import '~bootstrap/scss/bootstrap.scss';
