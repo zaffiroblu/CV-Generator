@@ -1,24 +1,24 @@
 import React from 'react';
 
 type propsFromParent = {
-	entryHeader?: string;
-	entrySubheader?: string;
-	entryTimespan?: string;
-	entryDetails?: string;
+	header?: string;
+	subheader?: string;
+	timespan?: string;
+	details?: string;
 };
 
 function C_EXPERIENCE_DISPLAY({
-	entryHeader,
-	entrySubheader,
-	entryTimespan,
-	entryDetails,
+	header,
+	subheader,
+	timespan,
+	details,
 }: propsFromParent) {
 	return (
 		<div>
-			<p className='classEntryHeader'>{entryHeader}</p>
-			<p className='classEntrySubheader'>{entrySubheader}</p>
-			<p className='classEntryTimeline'>{entryTimespan}</p>
-			<p className='classSidebarText'>{entryDetails}</p>
+			<p className='classEntryHeader'>{header}</p>
+			<p className='classEntrySubheader'>{subheader}</p>
+			<p className='classEntryTimeline'>{timespan}</p>
+			<p className='classSidebarText'>{details}</p>
 		</div>
 	);
 }

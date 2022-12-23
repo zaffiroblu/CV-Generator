@@ -3,7 +3,6 @@ import B_CV_PREVIEW from './B_CV_PREVIEW';
 import { B_PER_DATA_INPUT } from './B_PER_DATA_INPUT';
 import { B_CONTACT_INPUT } from './B_CONTACT_INPUT';
 import { B_SKILLS_INPUT } from './B_SKILLS_INPUT';
-import { B_EXPERIENCE_INPUT } from './B_EXPERIENCE_INPUT';
 import { B_SECTION_INPUT } from './B_SECTION_INPUT';
 import { InputDataType } from './InputDataType';
 
@@ -27,15 +26,7 @@ export const A_INPUT = () => {
 				skillDetails: '',
 			},
 		],
-		sectionData: [{ sectionHeader: '' }],
-		experienceData: [
-			{
-				entryHeader: '',
-				entrySubheader: '',
-				entryTimespan: '',
-				entryDetails: '',
-			},
-		],
+		sections: [{ sectionHeader: '', experience: [] }],
 	});
 
 	const skillDataGroup = {
@@ -44,20 +35,9 @@ export const A_INPUT = () => {
 		skillDetails: '',
 	};
 
-	const sectionDataGroup = {
-		sectionHeader: '',
-	};
+	const sectionDataGroup = { sectionHeader: '', experience: [] };
 
-	const experienceDataGroup = {
-		entryHeader: '',
-		entrySubheader: '',
-		entryTimespan: '',
-		entryDetails: '',
-	};
-
-	const addItemsToArray = <
-		PropertyNameType extends 'skillData' | 'sectionData' | 'experienceData'
-	>(
+	const addItemsToArray = <PropertyNameType extends 'skillData' | 'sections'>(
 		items: InputDataType[PropertyNameType],
 		propertyName: PropertyNameType
 	) => {
@@ -67,6 +47,21 @@ export const A_INPUT = () => {
 		});
 	};
 
+	const changeStateSlice = <
+		PropertyNameType extends 'personalData' | 'contactData'
+	>(
+		newData: Partial<InputDataType[PropertyNameType]>,
+		propertyName: PropertyNameType
+	) => {
+		setInputData((inputData) => ({
+			...inputData,
+			[propertyName]: {
+				...inputData[propertyName],
+				...newData,
+			},
+		}));
+	};
+
 	return (
 		<div className='d-flex'>
 			<div className='d-flex flex-column mx-2' id='input-area'>
@@ -74,27 +69,15 @@ export const A_INPUT = () => {
 					<h5>Personal Information</h5>
 					<B_PER_DATA_INPUT
 						data={inputData.personalData}
-						changeData={(newData) => {
-							setInputData((inputData) => ({
-								...inputData,
-								personalData: {
-									...inputData.personalData,
-									...newData,
-								},
-							}));
-						}}
+						changeData={(newPersonalData) =>
+							changeStateSlice(newPersonalData, 'personalData')
+						}
 					/>
 					<B_CONTACT_INPUT
 						data={inputData.contactData}
-						changeData={(newData) => {
-							setInputData((inputData) => ({
-								...inputData,
-								contactData: {
-									...inputData.contactData,
-									...newData,
-								},
-							}));
-						}}
+						changeData={(newContactData) =>
+							changeStateSlice(newContactData, 'contactData')
+						}
 					/>
 				</div>
 				<div className='d-flex flex-column skills-class'>
@@ -141,20 +124,20 @@ export const A_INPUT = () => {
 							addItemsToArray([skillDataGroup], 'skillData')
 						}
 					>
-						Add another skills section
+						Add skills set
 					</button>
 				</div>
 				<div className='d-flex flex-column section-class'>
-					<h5>Section</h5>
-					{inputData.sectionData.map(
+					<h5>Experience Section</h5>
+					{inputData.sections.map(
 						(sectionDataItem, sectionDataIndex) => (
 							<B_SECTION_INPUT
 								key={sectionDataIndex}
-								data={sectionDataItem}
-								changeData={(newData) => {
-									setInputData((inputData) => ({
+								sectionData={sectionDataItem}
+								updateSection={(newData) => {
+									setInputData({
 										...inputData,
-										sectionData: inputData.sectionData.map(
+										sections: inputData.sections.map(
 											(dataItem, dataItemIndex) => {
 												if (
 													dataItemIndex !==
@@ -168,84 +151,41 @@ export const A_INPUT = () => {
 												};
 											}
 										),
-									}));
-								}}
-								deleteData={() => {
-									setInputData({
-										...inputData,
-										sectionData:
-											inputData.sectionData.filter(
-												(_, dataItemIndex) =>
-													dataItemIndex !==
-													sectionDataIndex
-											),
 									});
 								}}
+								deleteSection={() => {
+									setInputData({
+										...inputData,
+										sections: inputData.sections.filter(
+											(_, dataItemIndex) =>
+												dataItemIndex !==
+												sectionDataIndex
+										),
+									});
+								}}
+								// deleteExperience={() => {
+								// 	setInputData({
+								// 		...inputData,
+								// 		sections:
+								// 			inputData.sections.experience.filter(
+								// 				(_, experienceItemIndex) =>
+								// 					experienceItemIndex !==
+								// 					sectionDataIndex
+								// 			),
+								// 	});
+								// }}
 							/>
 						)
 					)}
-					<button
-						className='btn btn-primary'
-						onClick={() =>
-							addItemsToArray([sectionDataGroup], 'sectionData')
-						}
-					>
-						Add a section header
-					</button>
 				</div>
-				<div className='d-flex flex-column experience-class'>
-					<h5>Experience</h5>
-					{inputData.experienceData.map(
-						(experienceDataItem, experienceDataIndex) => (
-							<B_EXPERIENCE_INPUT
-								key={experienceDataIndex}
-								data={experienceDataItem}
-								changeData={(newData) => {
-									setInputData((inputData) => ({
-										...inputData,
-										experienceData:
-											inputData.experienceData.map(
-												(dataItem, dataItemIndex) => {
-													if (
-														dataItemIndex !==
-														experienceDataIndex
-													) {
-														return dataItem;
-													}
-													return {
-														...dataItem,
-														...newData,
-													};
-												}
-											),
-									}));
-								}}
-								deleteData={() => {
-									setInputData({
-										...inputData,
-										experienceData:
-											inputData.experienceData.filter(
-												(_, dataItemIndex) =>
-													dataItemIndex !==
-													experienceDataIndex
-											),
-									});
-								}}
-							/>
-						)
-					)}
-					<button
-						className='btn btn-primary'
-						onClick={() =>
-							addItemsToArray(
-								[experienceDataGroup],
-								'experienceData'
-							)
-						}
-					>
-						Add another experience
-					</button>
-				</div>
+				<button
+					className='btn btn-primary'
+					onClick={() =>
+						addItemsToArray([sectionDataGroup], 'sections')
+					}
+				>
+					Add section
+				</button>
 			</div>
 			<B_CV_PREVIEW {...inputData} />
 		</div>

@@ -121,8 +121,8 @@
 	margin: 5px;
 }
 
-// .classSectionDetails {
-// 	font-size: 0.7rem;
-// }
-
 @import '~bootstrap/scss/bootstrap.scss';
+
+$theme-colors: (
+	'danger': blue,
+);

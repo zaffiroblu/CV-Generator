@@ -1,3 +1,5 @@
+import { SectionData } from './B_SECTION_INPUT';
+
 export type InputDataType = {
 	personalData: {
 		name: string;
@@ -15,11 +17,5 @@ export type InputDataType = {
 		customSkillHeader: string;
 		skillDetails: string;
 	}[];
-	sectionData: { sectionHeader: string }[];
-	experienceData: {
-		entryHeader: string;
-		entrySubheader: string;
-		entryTimespan: string;
-		entryDetails: string;
-	}[];
+	sections: SectionData[];
 };
