@@ -18,7 +18,7 @@ function C_EXPERIENCE_DISPLAY({
 			<p className='classEntryHeader'>{header}</p>
 			<p className='classEntrySubheader'>{subheader}</p>
 			<p className='classEntryTimeline'>{timespan}</p>
-			<p className='classSidebarText'>{details}</p>
+			<p className='classExpDetailsText'>{details}</p>
 		</div>
 	);
 }

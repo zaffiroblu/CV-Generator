@@ -16,7 +16,7 @@ export const B_CONTACT_INPUT = ({
 	return (
 		<>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.addressLine1}
 				placeholder='Address (line 1)'
@@ -25,7 +25,7 @@ export const B_CONTACT_INPUT = ({
 				}}
 			></input>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.addressLine2}
 				placeholder='Address (line 2)'
@@ -34,7 +34,7 @@ export const B_CONTACT_INPUT = ({
 				}}
 			></input>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.phone}
 				placeholder='Phone number'
@@ -43,7 +43,7 @@ export const B_CONTACT_INPUT = ({
 				}}
 			></input>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.email}
 				placeholder='Email address'
@@ -52,7 +52,7 @@ export const B_CONTACT_INPUT = ({
 				}}
 			></input>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.socialMedia}
 				placeholder='LinkedIn or Xing URL'

@@ -13,7 +13,7 @@ export const B_PER_DATA_INPUT = ({
 	return (
 		<>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				name='item1'
 				value={data.name}
@@ -23,7 +23,7 @@ export const B_PER_DATA_INPUT = ({
 				}}
 			/>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.title}
 				placeholder='Job title'

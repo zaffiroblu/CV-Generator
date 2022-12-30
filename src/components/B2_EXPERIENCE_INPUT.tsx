@@ -1,3 +1,6 @@
+import { Trash3 } from 'react-bootstrap-icons';
+import Button from 'react-bootstrap/Button';
+
 export type ExperienceData = {
 	header: string;
 	subheader: string;
@@ -15,48 +18,51 @@ export const B2_EXPERIENCE_INPUT = ({
 	deleteExperience: () => void;
 }) => {
 	return (
-		<>
+		<div className='experience-class'>
+			<div>Experience</div>
 			<input
-				className='m-1'
+				className='m-2 text-line'
 				type='text'
 				value={data.header}
-				placeholder='Entry header'
+				placeholder='Experience header'
 				onChange={(event) => {
 					changeDataExperience({ header: event.target.value });
 				}}
 			></input>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.subheader}
-				placeholder='Entry subheader'
+				placeholder='Experience subheader'
 				onChange={(event) => {
 					changeDataExperience({ subheader: event.target.value });
 				}}
 			></input>
 			<input
-				className='m-1'
+				className='m-1 text-line'
 				type='text'
 				value={data.timespan}
-				placeholder='Entry timespan'
+				placeholder='Experience timespan'
 				onChange={(event) => {
 					changeDataExperience({ timespan: event.target.value });
 				}}
 			></input>
 			<textarea
-				className='m-1'
+				className='m-1 text-line'
 				value={data.details}
-				placeholder='Entry details'
+				placeholder='Experience details'
 				onChange={(event) => {
 					changeDataExperience({ details: event.target.value });
 				}}
 			></textarea>
-			<button
-				className='btn btn-warning'
-				onClick={() => deleteExperience()}
-			>
-				Delete this experience
-			</button>
-		</>
+			<div className='d-flex justify-content-end delete-btn-container'>
+				<Button
+					variant='outline-danger delete-btn'
+					onClick={() => deleteExperience()}
+				>
+					<Trash3 />
+				</Button>
+			</div>
+		</div>
 	);
 };

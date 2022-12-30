@@ -1,21 +1,123 @@
 :root {
-	--height-1: 90vh;
+	--height-1: 650px;
 	--height-2: 100vh;
 	--width-1: 66%;
+
+	//Color themes
+	--app-bg-col: #0a0b2b;
+	--text-col: white;
+	--personal-bg-col: #1a012b;
+	--personal-border-col: #e6c926;
+	--img-upload-bg-col: #1a012b;
+	--details-bg-col: #222200;
+	--add-shadow-in-lite: none;
+	--danger: #e4147e;
+
+	.light-theme {
+		--app-bg-col: rgb(252 252 245);
+		--text-col: black;
+		--personal-bg-col: #fbf3c6;
+		--personal-border-col: #e6c926;
+		--img-upload-bg-col: #dbcdf0;
+		--details-bg-col: #f7d9c4;
+		--add-shadow-in-lite: 2px 3px 12px -5px #000000;
+	}
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(0, 238, 255);
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #01fabc;
+}
+
+@media print {
+	html {
+		font-size: 50px;
+	}
+
+	body * {
+		visibility: hidden;
+	}
+	#print-area,
+	#print-area * {
+		visibility: visible;
+	}
+	#print-area {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		border-style: none;
+	}
+}
+
+label {
+	font-size: 0.8rem;
+	color: var(--text-col);
+	border: solid #9900ff 1px;
+	border-radius: 4px;
+	padding: 6px;
+	font-weight: bolder;
+}
+
+label:hover {
+	background-color: #9900ff;
+}
+
+img {
+	margin-bottom: 15px;
+	border-radius: 10px;
+	-webkit-box-shadow: 2px 3px 12px -5px #000000;
+	box-shadow: 2px 3px 12px -5px #000000;
+}
+
+#app-main {
+	background-color: var(--app-bg-col);
+	height: 100vh;
+	transition: 0.7s;
+}
+
+#app-header {
+	color: var(--text-col);
+	font-size: 35px;
+	font-weight: bold;
+	padding: 5px;
 }
 
 #input-area {
 	overflow: scroll;
-	max-height: 100vh;
+	height: calc(var(--height-1));
+	min-width: 250px;
 }
 
 #display-area {
 	height: calc(var(--height-1));
 	width: calc(var(--height-1) * 0.707);
+	background-color: rgb(255 255 247);
 	margin: 2%;
-	padding: 3%;
+	padding: 5%;
 	border-style: solid;
 	word-break: break-word;
+}
+
+#print-area {
+	height: calc(var(--height-1));
+	width: calc(var(--height-1) * 0.707);
 }
 
 #display-area-left {
@@ -34,13 +136,13 @@
 }
 
 .CV-header {
-	font-size: 1.3rem;
+	font-size: 1.4rem;
 	font-weight: bold;
 }
 
 .CV-subheader {
 	font-size: 0.8rem;
-	margin-bottom: 0.8rem;
+	margin-bottom: 1rem;
 }
 
 .classSidebarHeader {
@@ -54,6 +156,12 @@
 	font-size: 0.5rem;
 	margin-top: 0.1rem;
 	margin-bottom: 0.2rem;
+}
+
+.classExpDetailsText {
+	font-size: 0.5rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.5rem;
 }
 
 .classSectionHeader {
@@ -86,43 +194,131 @@
 }
 
 .per-contact-class {
+	color: var(--text-col);
+	width: 260px;
 	padding: 5px;
-	border: 1px solid #db6adb;
-	border-left: 5px solid #d466d4;
-	background: #faf0fa;
+	border: 1px solid var(--personal-border-col);
+	border-left: 5px solid var(--personal-border-col);
+	background: var(--personal-bg-col);
 	border-radius: 5px;
 	margin: 5px;
+	margin: 10px;
+	padding: 10px;
+	padding-bottom: 20px;
+	box-shadow: var(--add-shadow-in-lite);
+	transition: 0.7s;
+}
+
+.image-upload-class {
+	color: var(--text-col);
+	font-size: 0.8rem;
+	width: 260px;
+	padding: 5px;
+	border: 1px solid #9900ff;
+	border-right: 5px solid #9900ff;
+	background: var(--img-upload-bg-col);
+	border-radius: 5px;
+	margin: 5px;
+	margin: 10px;
+	padding: 10px;
+	padding-bottom: 20px;
+	box-shadow: var(--add-shadow-in-lite);
+	transition: 0.7s;
 }
 
 .skills-class {
+	color: var(--text-col);
+	width: 260px;
 	padding: 5px;
-	border: 1px solid #e0a73c;
-	border-left: 5px solid #e0a73c;
-	background: #faf2e2;
+	border: 1px solid var(--personal-border-col);
+	border-left: 5px solid var(--personal-border-col);
+	background: var(--personal-bg-col);
 	border-radius: 5px;
 	margin: 5px;
+	margin: 10px;
+	padding: 10px;
+	padding-bottom: 20px;
+	box-shadow: var(--add-shadow-in-lite);
+	transition: 0.7s;
 }
 
 .section-class {
+	color: var(--text-col);
+	width: 260px;
 	padding: 5px;
-	border: 1px solid #09c265;
-	border-left: 5px solid #09c265;
-	background: #dbefe5;
+	border: 1px solid #9900ff;
+	border-left: 5px solid #9900ff;
+	background: var(--img-upload-bg-col);
 	border-radius: 5px;
 	margin: 5px;
+	margin: 10px;
+	padding: 10px;
+	box-shadow: var(--add-shadow-in-lite);
+	transition: 0.7s;
 }
 
 .experience-class {
+	width: 220px;
 	padding: 5px;
 	border: 1px solid #e0a73c;
 	border-left: 5px solid #e0a73c;
-	background: #faf2e2;
+	background: var(--details-bg-col);
 	border-radius: 5px;
 	margin: 5px;
+	margin: 10px;
+	padding: 10px;
+	box-shadow: var(--add-shadow-in-lite);
+	transition: 0.7s;
 }
 
-@import '~bootstrap/scss/bootstrap.scss';
+.text-line {
+	background-color: transparent;
+	height: auto;
+	font-size: 0.8rem;
+	color: var(--text-col);
+	outline: none;
+	outline-style: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: solid var(--text-col) 1px;
+	padding: 3px 10px;
+}
 
-$theme-colors: (
-	'danger': blue,
+.add-btn {
+	display: flex;
+	justify-content: center;
+	padding-top: 4px;
+	margin-left: 32%;
+	margin-right: 32%;
+}
+
+.delete-btn {
+	display: flex;
+	justify-content: center;
+	width: 40px;
+	padding-top: 4px;
+	margin-left: 75%;
+	margin-right: 3%;
+}
+
+.image-upload {
+	width: 200px;
+	font-size: 0.8rem;
+}
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+$custom-colors: (
+	'danger': #e4147e,
+	'success': #01faaf,
 );
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$form-select-color: (var(--text-col));
+$form-select-bg: (var(--details-bg-col));
+$form-select-font-size: (0.8rem);
+$btn-padding-x: 8px;
+
+@import '~bootstrap/scss/bootstrap';

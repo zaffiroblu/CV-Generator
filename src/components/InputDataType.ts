@@ -18,4 +18,5 @@ export type InputDataType = {
 		skillDetails: string;
 	}[];
 	sections: SectionData[];
+	imageData: { image: string };
 };

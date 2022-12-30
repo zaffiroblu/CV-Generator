@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 import B_CV_PREVIEW from './B_CV_PREVIEW';
 import { B_PER_DATA_INPUT } from './B_PER_DATA_INPUT';
 import { B_CONTACT_INPUT } from './B_CONTACT_INPUT';
 import { B_SKILLS_INPUT } from './B_SKILLS_INPUT';
 import { B_SECTION_INPUT } from './B_SECTION_INPUT';
+import { B_IMAGE_UPLOAD } from './B_IMAGE_UPLOAD';
 import { InputDataType } from './InputDataType';
+import Button from 'react-bootstrap/Button';
+import { Plus } from 'react-bootstrap-icons';
 
 export const A_INPUT = () => {
 	const [inputData, setInputData] = useState<InputDataType>({
@@ -27,6 +31,7 @@ export const A_INPUT = () => {
 			},
 		],
 		sections: [{ sectionHeader: '', experience: [] }],
+		imageData: { image: '' },
 	});
 
 	const skillDataGroup = {
@@ -48,7 +53,7 @@ export const A_INPUT = () => {
 	};
 
 	const changeStateSlice = <
-		PropertyNameType extends 'personalData' | 'contactData'
+		PropertyNameType extends 'personalData' | 'contactData' | 'imageData'
 	>(
 		newData: Partial<InputDataType[PropertyNameType]>,
 		propertyName: PropertyNameType
@@ -62,132 +67,156 @@ export const A_INPUT = () => {
 		}));
 	};
 
+	const changeInputData = <
+		PropertyNameType3 extends 'skillData' | 'sections'
+	>(
+		propertyName: PropertyNameType3,
+		newData: object,
+		dataIndex: number
+	) => {
+		setInputData({
+			...inputData,
+			[propertyName]: inputData[propertyName].map(
+				(dataItem, dataItemIndex) => {
+					if (dataItemIndex !== dataIndex) {
+						return dataItem;
+					}
+					return {
+						...dataItem,
+						...newData,
+					};
+				}
+			),
+		});
+	};
+
+	const deleteDataFunction = <PropertyNameType2 extends 'skillData'>(
+		dataIndex: number,
+		propertyName: PropertyNameType2
+	) => {
+		setInputData((inputData) => ({
+			...inputData,
+			[propertyName]: inputData[propertyName].filter(
+				(_, dataItemIndexToDelete) =>
+					dataItemIndexToDelete !== dataIndex
+			),
+		}));
+	};
+
 	return (
-		<div className='d-flex'>
-			<div className='d-flex flex-column mx-2' id='input-area'>
-				<div className='d-flex flex-column per-contact-class'>
-					<h5>Personal Information</h5>
-					<B_PER_DATA_INPUT
-						data={inputData.personalData}
-						changeData={(newPersonalData) =>
-							changeStateSlice(newPersonalData, 'personalData')
-						}
-					/>
-					<B_CONTACT_INPUT
-						data={inputData.contactData}
-						changeData={(newContactData) =>
-							changeStateSlice(newContactData, 'contactData')
-						}
-					/>
-				</div>
-				<div className='d-flex flex-column skills-class'>
-					<h5>Skills</h5>
-					{inputData.skillData.map(
-						(skillDataItem, skillDataIndex) => (
-							<B_SKILLS_INPUT
-								key={skillDataIndex}
-								data={skillDataItem}
-								changeData={(newData) => {
-									setInputData((inputData) => ({
-										...inputData,
-										skillData: inputData.skillData.map(
-											(dataItem, dataItemIndex) => {
-												if (
-													dataItemIndex !==
-													skillDataIndex
-												) {
-													return dataItem;
-												}
-												return {
-													...dataItem,
-													...newData,
-												};
-											}
-										),
-									}));
-								}}
-								deleteData={() => {
-									setInputData({
-										...inputData,
-										skillData: inputData.skillData.filter(
-											(_, dataItemIndex) =>
-												dataItemIndex !== skillDataIndex
-										),
-									});
-								}}
-							/>
-						)
-					)}
-					<button
-						className='btn btn-primary'
-						onClick={() =>
-							addItemsToArray([skillDataGroup], 'skillData')
-						}
-					>
-						Add skills set
-					</button>
-				</div>
-				<div className='d-flex flex-column section-class'>
-					<h5>Experience Section</h5>
-					{inputData.sections.map(
-						(sectionDataItem, sectionDataIndex) => (
-							<B_SECTION_INPUT
-								key={sectionDataIndex}
-								sectionData={sectionDataItem}
-								updateSection={(newData) => {
-									setInputData({
-										...inputData,
-										sections: inputData.sections.map(
-											(dataItem, dataItemIndex) => {
-												if (
+		<div className='d-flex flex-column' id='app-main'>
+			<div className='d-flex justify-content-center' id='app-header'>
+				CV Generator
+			</div>
+			<div className='d-flex justify-content-center'>
+				<div className='d-flex flex-column mx-2' id='input-area'>
+					<Form>
+						<Form.Check
+							type='switch'
+							id='custom-switch'
+							onClick={() =>
+								document.body.classList.toggle('light-theme')
+							}
+						/>
+					</Form>
+					<div className='d-flex flex-column per-contact-class'>
+						<h5>Personal Information</h5>
+						<B_PER_DATA_INPUT
+							data={inputData.personalData}
+							changeData={(newPersonalData) =>
+								changeStateSlice(
+									newPersonalData,
+									'personalData'
+								)
+							}
+						/>
+						<B_CONTACT_INPUT
+							data={inputData.contactData}
+							changeData={(newContactData) =>
+								changeStateSlice(newContactData, 'contactData')
+							}
+						/>
+					</div>
+					<div>
+						{inputData.sections.map(
+							(sectionDataItem, sectionDataIndex) => (
+								<B_SECTION_INPUT
+									key={sectionDataIndex}
+									sectionData={sectionDataItem}
+									updateSection={(newData) =>
+										changeInputData(
+											'sections',
+											newData,
+											sectionDataIndex
+										)
+									}
+									deleteSection={() => {
+										setInputData({
+											...inputData,
+											sections: inputData.sections.filter(
+												(_, dataItemIndex) =>
 													dataItemIndex !==
 													sectionDataIndex
-												) {
-													return dataItem;
-												}
-												return {
-													...dataItem,
-													...newData,
-												};
-											}
-										),
-									});
-								}}
-								deleteSection={() => {
-									setInputData({
-										...inputData,
-										sections: inputData.sections.filter(
-											(_, dataItemIndex) =>
-												dataItemIndex !==
-												sectionDataIndex
-										),
-									});
-								}}
-								// deleteExperience={() => {
-								// 	setInputData({
-								// 		...inputData,
-								// 		sections:
-								// 			inputData.sections.experience.filter(
-								// 				(_, experienceItemIndex) =>
-								// 					experienceItemIndex !==
-								// 					sectionDataIndex
-								// 			),
-								// 	});
-								// }}
-							/>
-						)
-					)}
+											),
+										});
+									}}
+								/>
+							)
+						)}
+					</div>
+					<Button
+						variant='outline-success add-btn'
+						onClick={() =>
+							addItemsToArray([sectionDataGroup], 'sections')
+						}
+					>
+						<Plus />
+					</Button>
 				</div>
-				<button
-					className='btn btn-primary'
-					onClick={() =>
-						addItemsToArray([sectionDataGroup], 'sections')
-					}
-				>
-					Add section
-				</button>
+				<B_CV_PREVIEW {...inputData} />
+				<div id='input-area'>
+					<div className='image-upload-class'>
+						<B_IMAGE_UPLOAD
+							data={inputData.imageData}
+							changeData={(newImageData) => {
+								changeStateSlice(newImageData, 'imageData');
+							}}
+						/>
+					</div>
+					<div className='d-flex flex-column skills-class'>
+						<h5>Skills</h5>
+						{inputData.skillData.map(
+							(skillDataItem, skillDataIndex) => (
+								<B_SKILLS_INPUT
+									key={skillDataIndex}
+									data={skillDataItem}
+									changeData={(newData) =>
+										changeInputData(
+											'skillData',
+											newData,
+											skillDataIndex
+										)
+									}
+									deleteData={() =>
+										deleteDataFunction(
+											skillDataIndex,
+											'skillData'
+										)
+									}
+								/>
+							)
+						)}
+						<Button
+							variant='outline-success add-btn'
+							onClick={() =>
+								addItemsToArray([skillDataGroup], 'skillData')
+							}
+						>
+							<Plus />
+						</Button>
+					</div>
+				</div>
 			</div>
-			<B_CV_PREVIEW {...inputData} />
 		</div>
 	);
 };
