@@ -11,16 +11,19 @@
 	--img-upload-bg-col: #1a012b;
 	--details-bg-col: #222200;
 	--add-shadow-in-lite: none;
-	--danger: #e4147e;
+	--scroll-bar-col: rgb(0, 238, 255);
+	--scroll-bar-col-active: #01fabc;
 
 	.light-theme {
 		--app-bg-col: rgb(252 252 245);
 		--text-col: black;
-		--personal-bg-col: #fbf3c6;
+		--personal-bg-col: #ffff;
 		--personal-border-col: #e6c926;
-		--img-upload-bg-col: #dbcdf0;
-		--details-bg-col: #f7d9c4;
-		--add-shadow-in-lite: 2px 3px 12px -5px #000000;
+		--img-upload-bg-col: #ffff;
+		--details-bg-col: #ffff;
+		--add-shadow-in-lite: 2px 1px 12px -5px #000000;
+		--scroll-bar-col: rgb(120, 240, 248);
+		--scroll-bar-col-active: #7df8d9;
 	}
 }
 
@@ -37,13 +40,13 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background: rgb(0, 238, 255);
+	background: var(--scroll-bar-col);
 	border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: #01fabc;
+	background: var(--scroll-bar-col-active);
 }
 
 @media print {
@@ -97,6 +100,12 @@ img {
 	font-size: 35px;
 	font-weight: bold;
 	padding: 5px;
+}
+
+#theme-print-row {
+	color: var(--text-col);
+	margin-right: 100px;
+	margin-left: 75px;
 }
 
 #input-area {
@@ -289,8 +298,9 @@ img {
 	display: flex;
 	justify-content: center;
 	padding-top: 4px;
-	margin-left: 32%;
-	margin-right: 32%;
+	margin-left: 35%;
+	margin-right: 35%;
+	box-shadow: var(--add-shadow-in-lite);
 }
 
 .delete-btn {
@@ -300,6 +310,12 @@ img {
 	padding-top: 4px;
 	margin-left: 75%;
 	margin-right: 3%;
+	box-shadow: var(--add-shadow-in-lite);
+}
+
+.print-btn {
+	width: 75px;
+	box-shadow: var(--add-shadow-in-lite);
 }
 
 .image-upload {
@@ -312,7 +328,8 @@ img {
 
 $custom-colors: (
 	'danger': #e4147e,
-	'success': #01faaf,
+	'info': rgb(0, 238, 255),
+	'success': #14e478,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
@@ -320,5 +337,7 @@ $form-select-color: (var(--text-col));
 $form-select-bg: (var(--details-bg-col));
 $form-select-font-size: (0.8rem);
 $btn-padding-x: 8px;
+$form-check-input-checked-bg-color: rgb(0, 238, 255);
+$form-check-input-checked-border-color: rgb(0, 238, 255);
 
 @import '~bootstrap/scss/bootstrap';

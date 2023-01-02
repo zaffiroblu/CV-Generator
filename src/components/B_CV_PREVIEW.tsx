@@ -68,7 +68,6 @@ function B_CV_PREVIEW({
 					</div>
 				</div>
 			) : null} */}
-			<button onClick={() => window.print()}>Print</button>
 		</div>
 	);
 }

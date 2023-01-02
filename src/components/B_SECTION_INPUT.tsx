@@ -29,7 +29,7 @@ export const B_SECTION_INPUT = ({
 			<div className='d-flex flex-column section-class'>
 				<h5>Experience Section</h5>
 				<input
-					className='m-2 text-line'
+					className='m-2 my-3 text-line'
 					type='text'
 					value={sectionData.sectionHeader}
 					placeholder='Section header'

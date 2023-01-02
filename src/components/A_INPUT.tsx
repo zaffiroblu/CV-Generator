@@ -8,7 +8,7 @@ import { B_SECTION_INPUT } from './B_SECTION_INPUT';
 import { B_IMAGE_UPLOAD } from './B_IMAGE_UPLOAD';
 import { InputDataType } from './InputDataType';
 import Button from 'react-bootstrap/Button';
-import { Plus } from 'react-bootstrap-icons';
+import { Plus, Printer } from 'react-bootstrap-icons';
 
 export const A_INPUT = () => {
 	const [inputData, setInputData] = useState<InputDataType>({
@@ -108,8 +108,12 @@ export const A_INPUT = () => {
 			<div className='d-flex justify-content-center' id='app-header'>
 				CV Generator
 			</div>
-			<div className='d-flex justify-content-center'>
-				<div className='d-flex flex-column mx-2' id='input-area'>
+			<div
+				className='d-flex justify-content-between align-items-center'
+				id='theme-print-row'
+			>
+				<div className='d-flex'>
+					<div className='mx-1'>dark mode</div>
 					<Form>
 						<Form.Check
 							type='switch'
@@ -119,6 +123,19 @@ export const A_INPUT = () => {
 							}
 						/>
 					</Form>
+					<div className='mx-1'>light mode</div>
+				</div>
+				<Button
+					className='d-flex justify-content-around align-items-center print-btn'
+					variant='info'
+					onClick={() => window.print()}
+				>
+					<Printer />
+					Print
+				</Button>
+			</div>
+			<div className='d-flex justify-content-center'>
+				<div className='d-flex flex-column mx-2' id='input-area'>
 					<div className='d-flex flex-column per-contact-class'>
 						<h5>Personal Information</h5>
 						<B_PER_DATA_INPUT
