@@ -37,7 +37,7 @@ export const B_IMAGE_UPLOAD = ({
 
 	return (
 		<>
-			<h5>Image Upload</h5>
+			<h5 className='input-header font-effect-neon'>Image Upload</h5>
 			<input
 				type='file'
 				id='profileImage'

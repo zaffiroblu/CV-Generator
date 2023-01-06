@@ -105,7 +105,10 @@ export const A_INPUT = () => {
 
 	return (
 		<div className='d-flex flex-column' id='app-main'>
-			<div className='d-flex justify-content-center' id='app-header'>
+			<div
+				className='d-flex justify-content-center font-effect-neon'
+				id='app-header'
+			>
 				CV Generator
 			</div>
 			{/* <div
@@ -116,8 +119,10 @@ export const A_INPUT = () => {
 			</div> */}
 			<div className='d-flex justify-content-center'>
 				<div className='d-flex flex-column input-area mx-2'>
-					<div className='input-box yellow-left'>
-						<h5>Personal Information</h5>
+					<div className='input-box purple-left'>
+						<h5 className='input-header font-effect-neon'>
+							Personal Information
+						</h5>
 						<B_PER_DATA_INPUT
 							data={inputData.personalData}
 							changeData={(newPersonalData) =>
@@ -198,8 +203,10 @@ export const A_INPUT = () => {
 								}}
 							/>
 						</div>
-						<div className='d-flex flex-column input-box yellow-right'>
-							<h5>Skills</h5>
+						<div className='d-flex flex-column input-box purple-right'>
+							<h5 className='input-header font-effect-neon'>
+								Skills
+							</h5>
 							{inputData.skillData.map(
 								(skillDataItem, skillDataIndex) => (
 									<B_SKILLS_INPUT

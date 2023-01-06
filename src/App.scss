@@ -9,25 +9,32 @@
 	--yellow-border-col: #e6c926;
 	--yellow-bg-col: #1a012b;
 	--purple-border-col: #9900ff;
-	--purple-bg-col: #1a012b;
-	--orange-border-col: #e0a73c;
-	--orange-bg-col: #222200;
+	--purple-bg-col: #2d004c;
+	--orange-border-col: #ffa600;
+	--orange-bg-col: #332100;
 	--add-shadow-or-glow: 0px 0px 12px -4px #f8f4dc;
 	--scroll-bar-col: rgb(155 190 192);
-	--scroll-bar-col-active: rgb(0, 238, 255);
+	--scroll-bar-col-active: #9900ff;
 
 	.light-theme {
-		--app-bg-col: rgb(252 252 245);
+		--app-bg-col: linear-gradient(
+			to top,
+			#f3f6f4,
+			#edf0ee,
+			#e6e9e7,
+			#e0e3e1,
+			#dadddb
+		);
 		--text-col: black;
-		--yellow-bg-col: rgb(236 236 236);
+		--yellow-bg-col: rgb(252 252 245);
 		--yellow-border-col: #e6c926;
-		--purple-border-col: #9900ff;
-		--purple-bg-col: rgb(236 236 236);
+		--purple-border-col: #c166ff;
+		--purple-bg-col: rgb(252 252 245);
 		--orange-border-col: #e0a73c;
-		--orange-bg-col: rgb(236 236 236);
+		--orange-bg-col: rgb(252 252 245);
 		--add-shadow-or-glow: 2px 1px 12px -5px #000000;
-		--scroll-bar-col: rgb(120, 240, 248);
-		--scroll-bar-col-active: #7df8d9;
+		--scroll-bar-col: rgb(155 190 192);
+		--scroll-bar-col-active: #c166ff;
 	}
 }
 
@@ -74,13 +81,14 @@ img {
 }
 
 #app-main {
-	background-color: var(--app-bg-col);
+	background: var(--app-bg-col);
 	min-height: 100vh;
 	transition: 0.7s;
 }
 
 #app-header {
 	color: var(--text-col);
+	font-family: 'Lato';
 	font-size: 35px;
 	font-weight: bold;
 	padding: 5px;
@@ -147,9 +155,13 @@ img {
 	margin: 15px;
 	margin-top: 0px;
 	padding: 20px;
-	gap: 10px;
+	gap: 5px;
 	box-shadow: var(--add-shadow-or-glow);
 	transition: 0.7s;
+}
+
+.input-box:hover {
+	transform: scale(1.05);
 }
 
 .yellow-left {
@@ -183,6 +195,13 @@ img {
 	background: var(--orange-bg-col);
 }
 
+.input-header {
+	color: var(--text-col);
+	font-family: 'Lato';
+	font-size: 18px;
+	font-weight: 600;
+}
+
 .text-line {
 	background-color: transparent;
 	height: auto;
@@ -210,6 +229,7 @@ img {
 
 // This is for the layout of the CV
 .CV-header {
+	font-family: 'Josefin Sans', sans-serif;
 	font-size: 1.3rem;
 	font-weight: bold;
 }
@@ -298,7 +318,7 @@ img {
 
 $custom-colors: (
 	'danger': #e4147e,
-	'info': rgb(0, 238, 255),
+	'info': #9900ff,
 	'success': #14e478,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
@@ -307,7 +327,7 @@ $form-select-color: (var(--text-col));
 $form-select-bg: (var(--orange-bg-col));
 $form-select-font-size: (0.8rem);
 $btn-padding-x: 8px;
-$form-check-input-checked-bg-color: rgb(0, 238, 255);
-$form-check-input-checked-border-color: rgb(0, 238, 255);
+$form-check-input-checked-bg-color: #9900ff;
+$form-check-input-checked-border-color: #9900ff;
 
 @import '~bootstrap/scss/bootstrap';

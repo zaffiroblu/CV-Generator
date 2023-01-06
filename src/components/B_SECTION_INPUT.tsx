@@ -27,7 +27,9 @@ export const B_SECTION_INPUT = ({
 	return (
 		<>
 			<div className='input-box purple-left'>
-				<h5>Experience Section</h5>
+				<h5 className='input-header font-effect-neon'>
+					Experience Section
+				</h5>
 				<input
 					className='my-2 text-line'
 					id='narrow-section-input'

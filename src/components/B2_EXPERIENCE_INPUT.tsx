@@ -19,7 +19,7 @@ export const B2_EXPERIENCE_INPUT = ({
 }) => {
 	return (
 		<div className='input-box orange-inner'>
-			<div>Experience</div>
+			{/* <div>Experience</div> */}
 			<input
 				className='my-1 text-line'
 				type='text'

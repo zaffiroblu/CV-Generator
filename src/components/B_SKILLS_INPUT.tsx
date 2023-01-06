@@ -19,7 +19,7 @@ export const B_SKILLS_INPUT = ({
 	return (
 		<>
 			<div className='input-box orange-inner'>
-				<div>Skill Set</div>
+				{/* <div>Skill Set</div> */}
 				<select
 					className='form-select my-1'
 					aria-label='Default select example'
