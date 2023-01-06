@@ -109,11 +109,11 @@ export const A_INPUT = () => {
 				CV Generator
 			</div>
 			<div
-				className='d-flex justify-content-between align-items-center'
+				className='d-flex justify-content-end align-items-center'
 				id='theme-print-row'
 			>
 				<div className='d-flex'>
-					<div className='mx-1'>dark mode</div>
+					<div className='mx-2'>dark mode</div>
 					<Form>
 						<Form.Check
 							type='switch'
@@ -125,14 +125,6 @@ export const A_INPUT = () => {
 					</Form>
 					<div className='mx-1'>light mode</div>
 				</div>
-				<Button
-					className='d-flex justify-content-around align-items-center print-btn'
-					variant='info'
-					onClick={() => window.print()}
-				>
-					<Printer />
-					Print
-				</Button>
 			</div>
 			<div className='d-flex justify-content-center'>
 				<div className='d-flex flex-column mx-2' id='input-area'>
@@ -181,14 +173,16 @@ export const A_INPUT = () => {
 							)
 						)}
 					</div>
-					<Button
-						variant='outline-success add-btn'
-						onClick={() =>
-							addItemsToArray([sectionDataGroup], 'sections')
-						}
-					>
-						<Plus />
-					</Button>
+					<div className='d-flex justify-content-center align-item-center'>
+						<Button
+							variant='outline-success add-btn'
+							onClick={() =>
+								addItemsToArray([sectionDataGroup], 'sections')
+							}
+						>
+							<Plus />
+						</Button>
+					</div>
 				</div>
 				<B_CV_PREVIEW {...inputData} />
 				<div id='input-area'>
@@ -223,14 +217,19 @@ export const A_INPUT = () => {
 								/>
 							)
 						)}
-						<Button
-							variant='outline-success add-btn'
-							onClick={() =>
-								addItemsToArray([skillDataGroup], 'skillData')
-							}
-						>
-							<Plus />
-						</Button>
+						<div className='d-flex justify-content-center align-item-center'>
+							<Button
+								variant='outline-success add-btn'
+								onClick={() =>
+									addItemsToArray(
+										[skillDataGroup],
+										'skillData'
+									)
+								}
+							>
+								<Plus />
+							</Button>
+						</div>
 					</div>
 				</div>
 			</div>

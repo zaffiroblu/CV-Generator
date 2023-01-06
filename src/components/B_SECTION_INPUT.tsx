@@ -28,15 +28,20 @@ export const B_SECTION_INPUT = ({
 		<>
 			<div className='d-flex flex-column section-class'>
 				<h5>Experience Section</h5>
-				<input
-					className='m-2 my-3 text-line'
-					type='text'
-					value={sectionData.sectionHeader}
-					placeholder='Section header'
-					onChange={(event) => {
-						updateSection({ sectionHeader: event.target.value });
-					}}
-				></input>
+				<div className='section-input-row'>
+					<input
+						className='my-2 text-line'
+						id='narrow-section-input'
+						type='text'
+						value={sectionData.sectionHeader}
+						placeholder='Section header'
+						onChange={(event) => {
+							updateSection({
+								sectionHeader: event.target.value,
+							});
+						}}
+					></input>
+				</div>
 				{sectionData.experience.map(
 					(experienceDataItem, experienceDataIndex) => (
 						<B2_EXPERIENCE_INPUT
@@ -72,19 +77,21 @@ export const B_SECTION_INPUT = ({
 						/>
 					)
 				)}
-				<Button
-					variant='outline-success add-btn'
-					onClick={() =>
-						updateSection({
-							experience: [
-								...sectionData.experience,
-								emptyExperienceItem,
-							],
-						})
-					}
-				>
-					<Plus />
-				</Button>
+				<div className='d-flex justify-content-center align-item-center'>
+					<Button
+						variant='outline-success add-btn'
+						onClick={() =>
+							updateSection({
+								experience: [
+									...sectionData.experience,
+									emptyExperienceItem,
+								],
+							})
+						}
+					>
+						<Plus />
+					</Button>
+				</div>
 				<div className='d-flex justify-content-end delete-btn-container'>
 					<Button
 						variant='outline-danger delete-btn'

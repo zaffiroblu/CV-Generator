@@ -1,5 +1,5 @@
 :root {
-	--height-1: 650px;
+	--height-1: 550px;
 	--height-2: 100vh;
 	--width-1: 66%;
 
@@ -11,16 +11,16 @@
 	--img-upload-bg-col: #1a012b;
 	--details-bg-col: #222200;
 	--add-shadow-in-lite: none;
-	--scroll-bar-col: rgb(0, 238, 255);
-	--scroll-bar-col-active: #01fabc;
+	--scroll-bar-col: rgb(155 190 192);
+	--scroll-bar-col-active: rgb(0, 238, 255);
 
 	.light-theme {
 		--app-bg-col: rgb(252 252 245);
 		--text-col: black;
-		--personal-bg-col: #ffff;
+		--personal-bg-col: rgb(252 252 245);
 		--personal-border-col: #e6c926;
-		--img-upload-bg-col: #ffff;
-		--details-bg-col: #ffff;
+		--img-upload-bg-col: rgb(252 252 245);
+		--details-bg-col: rgb(252 252 245);
 		--add-shadow-in-lite: 2px 1px 12px -5px #000000;
 		--scroll-bar-col: rgb(120, 240, 248);
 		--scroll-bar-col-active: #7df8d9;
@@ -49,26 +49,6 @@
 	background: var(--scroll-bar-col-active);
 }
 
-@media print {
-	html {
-		font-size: 50px;
-	}
-
-	body * {
-		visibility: hidden;
-	}
-	#print-area,
-	#print-area * {
-		visibility: visible;
-	}
-	#print-area {
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		border-style: none;
-	}
-}
-
 label {
 	font-size: 0.8rem;
 	color: var(--text-col);
@@ -91,7 +71,7 @@ img {
 
 #app-main {
 	background-color: var(--app-bg-col);
-	height: 100vh;
+	min-height: 100vh;
 	transition: 0.7s;
 }
 
@@ -100,6 +80,7 @@ img {
 	font-size: 35px;
 	font-weight: bold;
 	padding: 5px;
+	margin-top: 10px;
 }
 
 #theme-print-row {
@@ -109,7 +90,8 @@ img {
 }
 
 #input-area {
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	height: calc(var(--height-1));
 	min-width: 250px;
 }
@@ -119,7 +101,6 @@ img {
 	width: calc(var(--height-1) * 0.707);
 	background-color: rgb(255 255 247);
 	margin: 2%;
-	padding: 5%;
 	border-style: solid;
 	word-break: break-word;
 }
@@ -127,93 +108,43 @@ img {
 #print-area {
 	height: calc(var(--height-1));
 	width: calc(var(--height-1) * 0.707);
+	padding: 20px;
 }
 
 #display-area-left {
 	width: 66%;
-	padding-right: 1rem;
+	margin: 10px;
+	margin-bottom: 15px;
 	overflow: hidden;
 }
 
 #display-area-right {
 	width: 33%;
+	margin: 10px;
 	overflow: hidden;
+}
+
+#delete-margin {
+	margin: 0px;
 }
 
 .btn {
 	margin: 0.2rem;
 }
 
-.CV-header {
-	font-size: 1.4rem;
-	font-weight: bold;
-}
-
-.CV-subheader {
-	font-size: 0.8rem;
-	margin-bottom: 1rem;
-}
-
-.classSidebarHeader {
-	font-size: 0.5rem;
-	margin-top: 0.5rem;
-	margin-bottom: 0.1rem;
-	font-weight: bold;
-}
-
-.classSidebarText {
-	font-size: 0.5rem;
-	margin-top: 0.1rem;
-	margin-bottom: 0.2rem;
-}
-
-.classExpDetailsText {
-	font-size: 0.5rem;
-	margin-top: 0.1rem;
-	margin-bottom: 0.5rem;
-}
-
-.classSectionHeader {
-	font-size: 0.7rem;
-	text-transform: uppercase;
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-	color: #474444;
-	font-weight: 400;
-	margin-bottom: 0.2rem;
-}
-
-.classEntryHeader {
-	font-size: 0.6rem;
-	font-weight: 600;
-	margin-top: 0.1rem;
-	margin-bottom: 0.1rem;
-}
-
-.classEntrySubheader {
-	font-size: 0.6rem;
-	margin-top: 0.1rem;
-	margin-bottom: 0.1rem;
-}
-
-.classEntryTimeline {
-	font-size: 0.4rem;
-	font-style: italic;
-	margin-top: 0.1rem;
-	margin-bottom: 0.1rem;
-}
+// Below is the CSS code for the input boxes.
 
 .per-contact-class {
 	color: var(--text-col);
 	width: 260px;
-	padding: 5px;
 	border: 1px solid var(--personal-border-col);
 	border-left: 5px solid var(--personal-border-col);
 	background: var(--personal-bg-col);
 	border-radius: 5px;
-	margin: 5px;
 	margin: 10px;
-	padding: 10px;
-	padding-bottom: 20px;
+	padding: 20px;
+	padding-right: 30px;
+	padding-bottom: 30px;
 	box-shadow: var(--add-shadow-in-lite);
 	transition: 0.7s;
 }
@@ -240,10 +171,9 @@ img {
 	width: 260px;
 	padding: 5px;
 	border: 1px solid var(--personal-border-col);
-	border-left: 5px solid var(--personal-border-col);
+	border-right: 5px solid var(--personal-border-col);
 	background: var(--personal-bg-col);
 	border-radius: 5px;
-	margin: 5px;
 	margin: 10px;
 	padding: 10px;
 	padding-bottom: 20px;
@@ -251,15 +181,18 @@ img {
 	transition: 0.7s;
 }
 
+.section-input-row {
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
 .section-class {
 	color: var(--text-col);
 	width: 260px;
-	padding: 5px;
 	border: 1px solid #9900ff;
 	border-left: 5px solid #9900ff;
 	background: var(--img-upload-bg-col);
 	border-radius: 5px;
-	margin: 5px;
 	margin: 10px;
 	padding: 10px;
 	box-shadow: var(--add-shadow-in-lite);
@@ -267,15 +200,25 @@ img {
 }
 
 .experience-class {
-	width: 220px;
-	padding: 5px;
 	border: 1px solid #e0a73c;
-	border-left: 5px solid #e0a73c;
 	background: var(--details-bg-col);
 	border-radius: 5px;
-	margin: 5px;
 	margin: 10px;
 	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-shadow: var(--add-shadow-in-lite);
+	transition: 0.7s;
+}
+
+.skill-set-class {
+	border: 1px solid #e0a73c;
+	background: var(--details-bg-col);
+	border-radius: 5px;
+	margin: 10px;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 	box-shadow: var(--add-shadow-in-lite);
 	transition: 0.7s;
 }
@@ -283,6 +226,7 @@ img {
 .text-line {
 	background-color: transparent;
 	height: auto;
+	width: 96%;
 	font-size: 0.8rem;
 	color: var(--text-col);
 	outline: none;
@@ -291,25 +235,81 @@ img {
 	border-left: none;
 	border-right: none;
 	border-bottom: solid var(--text-col) 1px;
-	padding: 3px 10px;
+	padding: 3px 9px;
+	margin-left: 4px;
+}
+
+// This is for the layout of the CV
+.CV-header {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.CV-subheader {
+	font-size: 0.7rem;
+	margin-bottom: 0.7rem;
+}
+
+.classSidebarHeader {
+	font-size: 7px;
+	margin-top: 0.4rem;
+	margin-bottom: 0.1rem;
+	font-weight: bold;
+}
+
+.classSidebarText {
+	font-size: 6px;
+	margin-bottom: 2px;
+}
+
+.classEntryGroup {
+	margin-bottom: 0.2rem;
+}
+
+.classSectionHeader {
+	font-size: 0.6rem;
+	text-transform: uppercase;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	color: #474444;
+	font-weight: 400;
+	margin-bottom: 0.1rem;
+}
+
+.classEntryHeader {
+	font-size: 8px;
+	font-weight: 700;
+	margin-bottom: 2px;
+}
+
+.classEntrySubheader {
+	font-size: 7px;
+	margin-bottom: 2px;
+}
+
+.classEntryTimeline {
+	font-size: 6px;
+	color: #474444;
+	font-style: italic;
+	margin-bottom: 2px;
+}
+
+.classExpDetailsText {
+	font-size: 7px;
+	margin-bottom: 2px;
 }
 
 .add-btn {
-	display: flex;
 	justify-content: center;
-	padding-top: 4px;
-	margin-left: 35%;
-	margin-right: 35%;
+	width: 70px;
 	box-shadow: var(--add-shadow-in-lite);
 }
 
+.delete-button-container {
+	padding-right: 10px;
+}
 .delete-btn {
-	display: flex;
 	justify-content: center;
 	width: 40px;
-	padding-top: 4px;
-	margin-left: 75%;
-	margin-right: 3%;
 	box-shadow: var(--add-shadow-in-lite);
 }
 

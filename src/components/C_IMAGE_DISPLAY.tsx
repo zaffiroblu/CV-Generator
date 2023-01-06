@@ -7,7 +7,7 @@ type propsFromParent = {
 function C_IMAGE_DISPLAY({ image }: propsFromParent) {
 	return (
 		<div>
-			<img src={image} height='100px' width='100px' alt='Profile' />
+			<img src={image} height='75px' width='75px' alt='Profile' />
 		</div>
 	);
 }

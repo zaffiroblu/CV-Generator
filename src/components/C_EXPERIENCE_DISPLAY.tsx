@@ -14,11 +14,11 @@ function C_EXPERIENCE_DISPLAY({
 	details,
 }: propsFromParent) {
 	return (
-		<div>
-			<p className='classEntryHeader'>{header}</p>
-			<p className='classEntrySubheader'>{subheader}</p>
-			<p className='classEntryTimeline'>{timespan}</p>
-			<p className='classExpDetailsText'>{details}</p>
+		<div className='classEntryGroup'>
+			<div className='classEntryHeader'>{header}</div>
+			<div className='classEntrySubheader'>{subheader}</div>
+			<div className='classEntryTimeline'>{timespan}</div>
+			<div className='classExpDetailsText'>{details}</div>
 		</div>
 	);
 }

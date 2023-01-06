@@ -21,7 +21,7 @@ export const B2_EXPERIENCE_INPUT = ({
 		<div className='experience-class'>
 			<div>Experience</div>
 			<input
-				className='m-2 text-line'
+				className='my-1 text-line'
 				type='text'
 				value={data.header}
 				placeholder='Experience header'
@@ -30,7 +30,7 @@ export const B2_EXPERIENCE_INPUT = ({
 				}}
 			></input>
 			<input
-				className='m-1 text-line'
+				className='my-1 text-line'
 				type='text'
 				value={data.subheader}
 				placeholder='Experience subheader'
@@ -39,7 +39,7 @@ export const B2_EXPERIENCE_INPUT = ({
 				}}
 			></input>
 			<input
-				className='m-1 text-line'
+				className='my-1 text-line'
 				type='text'
 				value={data.timespan}
 				placeholder='Experience timespan'
@@ -48,7 +48,7 @@ export const B2_EXPERIENCE_INPUT = ({
 				}}
 			></input>
 			<textarea
-				className='m-1 text-line'
+				className='my-1 text-line'
 				value={data.details}
 				placeholder='Experience details'
 				onChange={(event) => {

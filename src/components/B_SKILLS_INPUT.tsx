@@ -18,15 +18,16 @@ export const B_SKILLS_INPUT = ({
 }) => {
 	return (
 		<>
-			<div className='experience-class'>
+			<div className='skill-set-class'>
 				<div>Skill Set</div>
 				<select
-					className='form-select m-1'
+					className='form-select my-1'
 					aria-label='Default select example'
 					onChange={(event) => {
 						changeData({ skillHeader: event.target.value });
 					}}
 					value={data.skillHeader}
+					id='narrow'
 				>
 					<option value=''>Select a skill type</option>
 					<option value='Industry Skills'>Industry Skills</option>
@@ -38,7 +39,7 @@ export const B_SKILLS_INPUT = ({
 				</select>
 				{data.skillHeader === 'Custom' ? (
 					<input
-						className='m-1 text-line'
+						className='my-1 text-line'
 						type='text'
 						value={data.customSkillHeader}
 						placeholder='Skill header'
@@ -50,16 +51,17 @@ export const B_SKILLS_INPUT = ({
 					></input>
 				) : null}
 				<textarea
-					className='m-1 text-line'
+					className='my-1 text-line'
 					value={data.skillDetails}
 					placeholder='Skill details'
 					onChange={(event) => {
 						changeData({ skillDetails: event.target.value });
 					}}
 				></textarea>
-				<div className='d-flex justify-content-end delete-btn-container'>
+				<div className='d-flex justify-content-end delete-btn-container my-1'>
 					<Button
 						variant='outline-danger delete-btn'
+						id='delete-margin'
 						onClick={() => deleteData()}
 					>
 						<Trash3 />

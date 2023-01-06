@@ -1,16 +1,14 @@
-import React from 'react';
-import C_PER_DATA_DISPLAY from './C_PER_DATA_DISPLAY';
-import C_CONTACT_DISPLAY from './C_CONTACT_DISPLAY';
-import C_SKILLS_DISPLAY from './C_SKILLS_DISPLAY';
-import C_SECTION_DISPLAY from './C_SECTION_DISPLAY';
-import C_IMAGE_DISPLAY from './C_IMAGE_DISPLAY';
+import React, { useRef } from 'react';
 import { PersonalData } from './B_PER_DATA_INPUT';
 import { ContactData } from './B_CONTACT_INPUT';
 import { SkillsData } from './B_SKILLS_INPUT';
 import { SectionData } from './B_SECTION_INPUT';
 import { ImageData } from './B_IMAGE_UPLOAD';
+import { B2_PRINT_COMPONENT } from './B2_PRINT_COMPONENT';
+import exportAsImage from './exportAsImage';
+import Button from 'react-bootstrap/Button';
 
-type propsFromParent = {
+export type CVDataType = {
 	personalData: PersonalData;
 	contactData: ContactData;
 	skillData: SkillsData[];
@@ -18,56 +16,26 @@ type propsFromParent = {
 	imageData: ImageData;
 };
 
-function B_CV_PREVIEW({
-	personalData,
-	contactData,
-	skillData,
-	sections,
-	imageData,
-}: propsFromParent) {
+function B_CV_PREVIEW(props: CVDataType) {
+	const exportRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	return (
 		<div>
-			<div className='d-flex flex-row mx-4' id='display-area'>
-				<div className='d-flex flex-row' id='print-area'>
-					<div
-						className='d-flex flex-column align-items-start m-2'
-						id='display-area-left'
-					>
-						<C_PER_DATA_DISPLAY {...personalData} />
-						{sections.map((sectionDataItem, sectionDataIndex) => (
-							<C_SECTION_DISPLAY
-								key={sectionDataIndex}
-								{...sectionDataItem}
-							/>
-						))}
-					</div>
-					<div
-						className='d-flex flex-column align-items-start m-2'
-						id='display-area-right'
-					>
-						{imageData.image !== '' ? (
-							<C_IMAGE_DISPLAY {...imageData} />
-						) : null}
-						<C_CONTACT_DISPLAY {...contactData} />
-						{skillData.map((skillDataItem, skillDataIndex) => (
-							<C_SKILLS_DISPLAY
-								key={skillDataIndex}
-								{...skillDataItem}
-							/>
-						))}
-					</div>
-				</div>
+			<div
+				className='d-flex flex-row mx-4'
+				id='display-area'
+				ref={exportRef}
+			>
+				<B2_PRINT_COMPONENT {...props} />
 			</div>
-			{/* {data.skillHeader === 'Custom' ? (
-				<div className='d-flex flex-row mx-2' id='display-area'>
-					<div
-						className='d-flex flex-column align-items-start m-2'
-						id='display-area-left'
-					>
-						<C_PER_DATA_DISPLAY {...personalData} />
-					</div>
-				</div>
-			) : null} */}
+			<div className='d-flex flex-row justify-content-end mx-4'>
+				<Button
+					className='d-flex justify-content-around align-items-center print-btn'
+					variant='info'
+					onClick={() => exportAsImage(exportRef.current, 'print')}
+				>
+					Capture
+				</Button>
+			</div>
 		</div>
 	);
 }
