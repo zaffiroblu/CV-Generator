@@ -26,22 +26,20 @@ export const B_SECTION_INPUT = ({
 }) => {
 	return (
 		<>
-			<div className='d-flex flex-column section-class'>
+			<div className='input-box purple-left'>
 				<h5>Experience Section</h5>
-				<div className='section-input-row'>
-					<input
-						className='my-2 text-line'
-						id='narrow-section-input'
-						type='text'
-						value={sectionData.sectionHeader}
-						placeholder='Section header'
-						onChange={(event) => {
-							updateSection({
-								sectionHeader: event.target.value,
-							});
-						}}
-					></input>
-				</div>
+				<input
+					className='my-2 text-line'
+					id='narrow-section-input'
+					type='text'
+					value={sectionData.sectionHeader}
+					placeholder='Section header'
+					onChange={(event) => {
+						updateSection({
+							sectionHeader: event.target.value,
+						});
+					}}
+				></input>
 				{sectionData.experience.map(
 					(experienceDataItem, experienceDataIndex) => (
 						<B2_EXPERIENCE_INPUT

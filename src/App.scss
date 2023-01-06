@@ -6,22 +6,26 @@
 	//Color themes
 	--app-bg-col: #0a0b2b;
 	--text-col: white;
-	--personal-bg-col: #1a012b;
-	--personal-border-col: #e6c926;
-	--img-upload-bg-col: #1a012b;
-	--details-bg-col: #222200;
-	--add-shadow-in-lite: none;
+	--yellow-border-col: #e6c926;
+	--yellow-bg-col: #1a012b;
+	--purple-border-col: #9900ff;
+	--purple-bg-col: #1a012b;
+	--orange-border-col: #e0a73c;
+	--orange-bg-col: #222200;
+	--add-shadow-or-glow: 0px 0px 12px -4px #f8f4dc;
 	--scroll-bar-col: rgb(155 190 192);
 	--scroll-bar-col-active: rgb(0, 238, 255);
 
 	.light-theme {
 		--app-bg-col: rgb(252 252 245);
 		--text-col: black;
-		--personal-bg-col: rgb(252 252 245);
-		--personal-border-col: #e6c926;
-		--img-upload-bg-col: rgb(252 252 245);
-		--details-bg-col: rgb(252 252 245);
-		--add-shadow-in-lite: 2px 1px 12px -5px #000000;
+		--yellow-bg-col: rgb(236 236 236);
+		--yellow-border-col: #e6c926;
+		--purple-border-col: #9900ff;
+		--purple-bg-col: rgb(236 236 236);
+		--orange-border-col: #e0a73c;
+		--orange-bg-col: rgb(236 236 236);
+		--add-shadow-or-glow: 2px 1px 12px -5px #000000;
 		--scroll-bar-col: rgb(120, 240, 248);
 		--scroll-bar-col-active: #7df8d9;
 	}
@@ -89,19 +93,13 @@ img {
 	margin-left: 75px;
 }
 
-#input-area {
-	overflow-y: scroll;
-	overflow-x: hidden;
-	height: calc(var(--height-1));
-	min-width: 250px;
-}
-
 #display-area {
 	height: calc(var(--height-1));
 	width: calc(var(--height-1) * 0.707);
 	background-color: rgb(255 255 247);
-	margin: 2%;
 	border-style: solid;
+	margin-left: 10px;
+	margin-right: 10px;
 	word-break: break-word;
 }
 
@@ -128,105 +126,67 @@ img {
 	margin: 0px;
 }
 
-.btn {
-	margin: 0.2rem;
+.text-color {
+	color: var(--text-col);
+}
+
+.input-area {
+	height: calc(var(--height-1));
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: calc(var(--height-1));
 }
 
 // Below is the CSS code for the input boxes.
-
-.per-contact-class {
+.input-box {
+	display: flex;
+	flex-direction: column;
 	color: var(--text-col);
-	width: 260px;
-	border: 1px solid var(--personal-border-col);
-	border-left: 5px solid var(--personal-border-col);
-	background: var(--personal-bg-col);
+	width: 250px;
 	border-radius: 5px;
-	margin: 10px;
+	margin: 15px;
+	margin-top: 0px;
 	padding: 20px;
-	padding-right: 30px;
-	padding-bottom: 30px;
-	box-shadow: var(--add-shadow-in-lite);
+	gap: 10px;
+	box-shadow: var(--add-shadow-or-glow);
 	transition: 0.7s;
 }
 
-.image-upload-class {
-	color: var(--text-col);
-	font-size: 0.8rem;
-	width: 260px;
-	padding: 5px;
-	border: 1px solid #9900ff;
-	border-right: 5px solid #9900ff;
-	background: var(--img-upload-bg-col);
-	border-radius: 5px;
-	margin: 5px;
-	margin: 10px;
-	padding: 10px;
-	padding-bottom: 20px;
-	box-shadow: var(--add-shadow-in-lite);
-	transition: 0.7s;
+.yellow-left {
+	border: 1px solid var(--yellow-border-col);
+	border-left: 5px solid var(--yellow-border-col);
+	background: var(--yellow-bg-col);
 }
 
-.skills-class {
-	color: var(--text-col);
-	width: 260px;
-	padding: 5px;
-	border: 1px solid var(--personal-border-col);
-	border-right: 5px solid var(--personal-border-col);
-	background: var(--personal-bg-col);
-	border-radius: 5px;
-	margin: 10px;
-	padding: 10px;
-	padding-bottom: 20px;
-	box-shadow: var(--add-shadow-in-lite);
-	transition: 0.7s;
+.yellow-right {
+	border: 1px solid var(--yellow-border-col);
+	border-right: 5px solid var(--yellow-border-col);
+	background: var(--yellow-bg-col);
 }
 
-.section-input-row {
-	padding-left: 10px;
-	padding-right: 20px;
+.purple-left {
+	border: 1px solid var(--purple-border-col);
+	border-left: 5px solid var(--purple-border-col);
+	background: var(--purple-bg-col);
 }
 
-.section-class {
-	color: var(--text-col);
-	width: 260px;
-	border: 1px solid #9900ff;
-	border-left: 5px solid #9900ff;
-	background: var(--img-upload-bg-col);
-	border-radius: 5px;
-	margin: 10px;
-	padding: 10px;
-	box-shadow: var(--add-shadow-in-lite);
-	transition: 0.7s;
+.purple-right {
+	border: 1px solid var(--purple-border-col);
+	border-right: 5px solid var(--purple-border-col);
+	background: var(--purple-bg-col);
 }
 
-.experience-class {
+.orange-inner {
+	margin: 0;
+	width: 100%;
 	border: 1px solid #e0a73c;
-	background: var(--details-bg-col);
-	border-radius: 5px;
-	margin: 10px;
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	box-shadow: var(--add-shadow-in-lite);
-	transition: 0.7s;
-}
-
-.skill-set-class {
-	border: 1px solid #e0a73c;
-	background: var(--details-bg-col);
-	border-radius: 5px;
-	margin: 10px;
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	box-shadow: var(--add-shadow-in-lite);
-	transition: 0.7s;
+	background: var(--orange-bg-col);
 }
 
 .text-line {
 	background-color: transparent;
 	height: auto;
-	width: 96%;
+	width: 100%;
 	font-size: 0.8rem;
 	color: var(--text-col);
 	outline: none;
@@ -235,8 +195,17 @@ img {
 	border-left: none;
 	border-right: none;
 	border-bottom: solid var(--text-col) 1px;
-	padding: 3px 9px;
-	margin-left: 4px;
+}
+
+.right-column {
+	position: relative;
+}
+
+.theme-switch {
+	position: absolute;
+	top: -30px;
+	left: 0px;
+	right: 0px;
 }
 
 // This is for the layout of the CV
@@ -301,7 +270,7 @@ img {
 .add-btn {
 	justify-content: center;
 	width: 70px;
-	box-shadow: var(--add-shadow-in-lite);
+	box-shadow: var(--add-shadow-or-glow);
 }
 
 .delete-button-container {
@@ -310,12 +279,13 @@ img {
 .delete-btn {
 	justify-content: center;
 	width: 40px;
-	box-shadow: var(--add-shadow-in-lite);
+	box-shadow: var(--add-shadow-or-glow);
 }
 
 .print-btn {
 	width: 75px;
-	box-shadow: var(--add-shadow-in-lite);
+	box-shadow: var(--add-shadow-or-glow);
+	margin: 10px;
 }
 
 .image-upload {
@@ -334,7 +304,7 @@ $custom-colors: (
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 $form-select-color: (var(--text-col));
-$form-select-bg: (var(--details-bg-col));
+$form-select-bg: (var(--orange-bg-col));
 $form-select-font-size: (0.8rem);
 $btn-padding-x: 8px;
 $form-check-input-checked-bg-color: rgb(0, 238, 255);

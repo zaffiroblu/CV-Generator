@@ -18,7 +18,7 @@ export const B2_EXPERIENCE_INPUT = ({
 	deleteExperience: () => void;
 }) => {
 	return (
-		<div className='experience-class'>
+		<div className='input-box orange-inner'>
 			<div>Experience</div>
 			<input
 				className='my-1 text-line'

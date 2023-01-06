@@ -20,11 +20,7 @@ function B_CV_PREVIEW(props: CVDataType) {
 	const exportRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	return (
 		<div>
-			<div
-				className='d-flex flex-row mx-4'
-				id='display-area'
-				ref={exportRef}
-			>
+			<div className='d-flex flex-row' id='display-area' ref={exportRef}>
 				<B2_PRINT_COMPONENT {...props} />
 			</div>
 			<div className='d-flex flex-row justify-content-end mx-4'>
