@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import B_CV_PREVIEW from './B_CV_PREVIEW';
-import { B_PER_DATA_INPUT } from './B_PER_DATA_INPUT';
+import {
+	B_PER_DATA_INPUT,
+	PersonalData,
+	PersonalDataContext,
+} from './B_PER_DATA_INPUT';
 import { B_CONTACT_INPUT } from './B_CONTACT_INPUT';
 import { B_SKILLS_INPUT } from './B_SKILLS_INPUT';
 import { B_SECTION_INPUT } from './B_SECTION_INPUT';
 import { B_IMAGE_UPLOAD } from './B_IMAGE_UPLOAD';
 import { InputDataType } from './InputDataType';
 import Button from 'react-bootstrap/Button';
-import { Plus, Printer } from 'react-bootstrap-icons';
+import { Plus } from 'react-bootstrap-icons';
 
 export const A_INPUT = () => {
+	const [personalData, setPersonalData] = useState<PersonalData>({
+		name: '',
+		title: '',
+	});
+
 	const [inputData, setInputData] = useState<InputDataType>({
-		personalData: {
-			name: '',
-			title: '',
-		},
 		contactData: {
 			addressLine1: '',
 			addressLine2: '',
@@ -53,7 +58,7 @@ export const A_INPUT = () => {
 	};
 
 	const changeStateSlice = <
-		PropertyNameType extends 'personalData' | 'contactData' | 'imageData'
+		PropertyNameType extends 'contactData' | 'imageData'
 	>(
 		newData: Partial<InputDataType[PropertyNameType]>,
 		propertyName: PropertyNameType
@@ -104,148 +109,148 @@ export const A_INPUT = () => {
 	};
 
 	return (
-		<div className='d-flex flex-column' id='app-main'>
-			<div
-				className='d-flex justify-content-center font-effect-neon'
-				id='app-header'
-			>
-				CV Generator
-			</div>
-			{/* <div
-				className='d-flex justify-content-end align-items-center'
-				id='theme-print-row'
-			>
-				
-			</div> */}
-			<div className='d-flex justify-content-center'>
-				<div className='d-flex flex-column input-area mx-2'>
-					<div className='input-box purple-left'>
-						<h5 className='input-header font-effect-neon'>
-							Personal Information
-						</h5>
-						<B_PER_DATA_INPUT
-							data={inputData.personalData}
-							changeData={(newPersonalData) =>
-								changeStateSlice(
-									newPersonalData,
-									'personalData'
-								)
-							}
-						/>
-						<B_CONTACT_INPUT
-							data={inputData.contactData}
-							changeData={(newContactData) =>
-								changeStateSlice(newContactData, 'contactData')
-							}
-						/>
-					</div>
-					<div>
-						{inputData.sections.map(
-							(sectionDataItem, sectionDataIndex) => (
-								<B_SECTION_INPUT
-									key={sectionDataIndex}
-									sectionData={sectionDataItem}
-									updateSection={(newData) =>
-										changeInputData(
-											'sections',
-											newData,
-											sectionDataIndex
-										)
-									}
-									deleteSection={() => {
-										setInputData({
-											...inputData,
-											sections: inputData.sections.filter(
-												(_, dataItemIndex) =>
-													dataItemIndex !==
-													sectionDataIndex
-											),
-										});
-									}}
-								/>
-							)
-						)}
-					</div>
-					<div className='d-flex justify-content-center align-item-center'>
-						<Button
-							variant='outline-success add-btn'
-							onClick={() =>
-								addItemsToArray([sectionDataGroup], 'sections')
-							}
-						>
-							<Plus />
-						</Button>
-					</div>
-				</div>
-				<B_CV_PREVIEW {...inputData} />
-				<div className='right-column'>
-					<div className='d-flex justify-content-center theme-switch'>
-						<div className='mx-2 text-color'>dark mode</div>
-						<Form>
-							<Form.Check
-								type='switch'
-								id='custom-switch'
-								onClick={() =>
-									document.body.classList.toggle(
-										'light-theme'
+		<PersonalDataContext.Provider value={personalData}>
+			<div className='d-flex flex-column' id='app-main'>
+				<h1
+					className='d-flex justify-content-center font-effect-neon'
+					id='app-header'
+				>
+					CV Generator
+				</h1>
+
+				<div className='d-flex justify-content-center'>
+					<div className='d-flex flex-column input-area mx-2'>
+						<div className='input-box purple-left'>
+							<h5 className='input-header font-effect-neon'>
+								Personal Information
+							</h5>
+							<B_PER_DATA_INPUT setData={setPersonalData} />
+							<B_CONTACT_INPUT
+								data={inputData.contactData}
+								changeData={(newContactData) =>
+									changeStateSlice(
+										newContactData,
+										'contactData'
 									)
 								}
 							/>
-						</Form>
-						<div className='mx-1 text-color'>light mode</div>
-					</div>
-					<div className='input-area'>
-						<div className='input-box purple-right'>
-							<B_IMAGE_UPLOAD
-								data={inputData.imageData}
-								changeData={(newImageData) => {
-									changeStateSlice(newImageData, 'imageData');
-								}}
-							/>
 						</div>
-						<div className='d-flex flex-column input-box purple-right'>
-							<h5 className='input-header font-effect-neon'>
-								Skills
-							</h5>
-							{inputData.skillData.map(
-								(skillDataItem, skillDataIndex) => (
-									<B_SKILLS_INPUT
-										key={skillDataIndex}
-										data={skillDataItem}
-										changeData={(newData) =>
+						<div>
+							{inputData.sections.map(
+								(sectionDataItem, sectionDataIndex) => (
+									<B_SECTION_INPUT
+										key={sectionDataIndex}
+										sectionData={sectionDataItem}
+										updateSection={(newData) =>
 											changeInputData(
-												'skillData',
+												'sections',
 												newData,
-												skillDataIndex
+												sectionDataIndex
 											)
 										}
-										deleteData={() =>
-											deleteDataFunction(
-												skillDataIndex,
-												'skillData'
-											)
-										}
+										deleteSection={() => {
+											setInputData({
+												...inputData,
+												sections:
+													inputData.sections.filter(
+														(_, dataItemIndex) =>
+															dataItemIndex !==
+															sectionDataIndex
+													),
+											});
+										}}
 									/>
 								)
 							)}
-							<div className='d-flex justify-content-center align-item-center'>
-								<Button
-									variant='outline-success add-btn'
+						</div>
+						<div className='d-flex justify-content-center align-item-center'>
+							<Button
+								variant='outline-success add-btn'
+								onClick={() =>
+									addItemsToArray(
+										[sectionDataGroup],
+										'sections'
+									)
+								}
+							>
+								<Plus />
+							</Button>
+						</div>
+					</div>
+					<B_CV_PREVIEW {...inputData} />
+					<div className='right-column'>
+						<div className='d-flex justify-content-center theme-switch'>
+							<div className='mx-2 text-color'>dark mode</div>
+							<Form>
+								<Form.Check
+									className='info'
+									type='switch'
+									id='custom-switch'
 									onClick={() =>
-										addItemsToArray(
-											[skillDataGroup],
-											'skillData'
+										document.body.classList.toggle(
+											'light-theme'
 										)
 									}
-								>
-									<Plus />
-								</Button>
+								/>
+							</Form>
+							<div className='mx-1 text-color'>light mode</div>
+						</div>
+						<div className='input-area'>
+							<div className='input-box purple-right'>
+								<B_IMAGE_UPLOAD
+									data={inputData.imageData}
+									changeData={(newImageData) => {
+										changeStateSlice(
+											newImageData,
+											'imageData'
+										);
+									}}
+								/>
+							</div>
+							<div className='d-flex flex-column input-box purple-right'>
+								<h5 className='input-header font-effect-neon'>
+									Skills
+								</h5>
+								{inputData.skillData.map(
+									(skillDataItem, skillDataIndex) => (
+										<B_SKILLS_INPUT
+											key={skillDataIndex}
+											data={skillDataItem}
+											changeData={(newData) =>
+												changeInputData(
+													'skillData',
+													newData,
+													skillDataIndex
+												)
+											}
+											deleteData={() =>
+												deleteDataFunction(
+													skillDataIndex,
+													'skillData'
+												)
+											}
+										/>
+									)
+								)}
+								<div className='d-flex justify-content-center align-item-center'>
+									<Button
+										variant='outline-success add-btn'
+										onClick={() =>
+											addItemsToArray(
+												[skillDataGroup],
+												'skillData'
+											)
+										}
+									>
+										<Plus />
+									</Button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</PersonalDataContext.Provider>
 	);
 };
 

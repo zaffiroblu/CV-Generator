@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { PersonalData } from './B_PER_DATA_INPUT';
+import React, { useRef, useState } from 'react';
 import { ContactData } from './B_CONTACT_INPUT';
 import { SkillsData } from './B_SKILLS_INPUT';
 import { SectionData } from './B_SECTION_INPUT';
@@ -9,7 +8,6 @@ import exportAsImage from './exportAsImage';
 import Button from 'react-bootstrap/Button';
 
 export type CVDataType = {
-	personalData: PersonalData;
 	contactData: ContactData;
 	skillData: SkillsData[];
 	sections: SectionData[];
@@ -17,17 +15,34 @@ export type CVDataType = {
 };
 
 function B_CV_PREVIEW(props: CVDataType) {
-	const exportRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+	const exportRef = useRef<HTMLInputElement>(null);
+	const [captureSpinner, setCaptureSpinner] = useState(false);
+
+	const handleClick = async () => {
+		setCaptureSpinner(true);
+		await exportAsImage(exportRef.current, 'print');
+		setCaptureSpinner(false);
+	};
+
 	return (
 		<div>
 			<div className='d-flex flex-row' id='display-area' ref={exportRef}>
 				<B2_PRINT_COMPONENT {...props} />
 			</div>
 			<div className='d-flex flex-row justify-content-end mx-4'>
+				{captureSpinner === true ? (
+					<div
+						className='spinner-border text-info'
+						role='status'
+						id='load-spinner-image'
+					>
+						<span className='visually-hidden'>Loading...</span>
+					</div>
+				) : null}
 				<Button
 					className='d-flex justify-content-around align-items-center print-btn'
 					variant='info'
-					onClick={() => exportAsImage(exportRef.current, 'print')}
+					onClick={handleClick}
 				>
 					Capture
 				</Button>

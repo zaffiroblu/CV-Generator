@@ -13,7 +13,7 @@ export const B2_PRINT_COMPONENT = (props: CVDataType) => {
 					className='d-flex flex-column align-items-start'
 					id='display-area-left'
 				>
-					<C_PER_DATA_DISPLAY {...props.personalData} />
+					<C_PER_DATA_DISPLAY />
 					{props.sections.map((sectionDataItem, sectionDataIndex) => (
 						<C_SECTION_DISPLAY
 							key={sectionDataIndex}

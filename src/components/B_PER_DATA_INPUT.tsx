@@ -1,15 +1,21 @@
+import { createContext, useContext, useState } from 'react';
+
 export type PersonalData = {
 	name: string;
 	title: string;
 };
 
+export const PersonalDataContext = createContext<PersonalData>({
+	name: '',
+	title: '',
+});
+
 export const B_PER_DATA_INPUT = ({
-	data,
-	changeData,
+	setData,
 }: {
-	data: PersonalData;
-	changeData: (newData: Partial<PersonalData>) => void;
+	setData: (data: PersonalData) => void;
 }) => {
+	const data = useContext(PersonalDataContext);
 	return (
 		<>
 			<input
@@ -19,7 +25,7 @@ export const B_PER_DATA_INPUT = ({
 				value={data.name}
 				placeholder='Full name'
 				onChange={(event) => {
-					changeData({ name: event.target.value });
+					setData({ ...data, name: event.target.value });
 				}}
 			/>
 			<input
@@ -28,7 +34,7 @@ export const B_PER_DATA_INPUT = ({
 				value={data.title}
 				placeholder='Job title'
 				onChange={(event) => {
-					changeData({ title: event.target.value });
+					setData({ ...data, title: event.target.value });
 				}}
 			></input>
 		</>

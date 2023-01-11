@@ -10,31 +10,35 @@
 	--yellow-bg-col: #1a012b;
 	--purple-border-col: #9900ff;
 	--purple-bg-col: #2d004c;
-	--orange-border-col: #ffa600;
+	--purple-bg-col-hover: #40006b;
+	--orange-border-col: #ff9900;
 	--orange-bg-col: #332100;
+	--orange-bg-col-hover: #422b00;
 	--add-shadow-or-glow: 0px 0px 12px -4px #f8f4dc;
-	--scroll-bar-col: rgb(155 190 192);
-	--scroll-bar-col-active: #9900ff;
+	--scroll-bar-col: #8b399c;
+	--scroll-bar-col-active: #d2add9;
 
 	.light-theme {
 		--app-bg-col: linear-gradient(
 			to top,
-			#f3f6f4,
-			#edf0ee,
-			#e6e9e7,
-			#e0e3e1,
-			#dadddb
+			#faf4ff,
+			#f9f4fc,
+			#f8f3f9,
+			#f6f3f6,
+			#f4f3f4
 		);
 		--text-col: black;
 		--yellow-bg-col: rgb(252 252 245);
 		--yellow-border-col: #e6c926;
 		--purple-border-col: #c166ff;
-		--purple-bg-col: rgb(252 252 245);
-		--orange-border-col: #e0a73c;
-		--orange-bg-col: rgb(252 252 245);
+		--purple-bg-col: #f5f3f5;
+		--purple-bg-col-hover: #f2e6fc;
+		--orange-border-col: #ffc664;
+		--orange-bg-col: #fcf9f4;
+		--orange-bg-col-hover: #faecd3;
 		--add-shadow-or-glow: 2px 1px 12px -5px #000000;
-		--scroll-bar-col: rgb(155 190 192);
-		--scroll-bar-col-active: #c166ff;
+		--scroll-bar-col: #dc88ec;
+		--scroll-bar-col-active: #f8d5ff;
 	}
 }
 
@@ -88,11 +92,17 @@ img {
 
 #app-header {
 	color: var(--text-col);
-	font-family: 'Lato';
+	font-family: 'Lato', Arial, Helvetica, sans-serif;
 	font-size: 35px;
-	font-weight: bold;
+	font-weight: 700;
 	padding: 5px;
 	margin-top: 10px;
+	margin-bottom: 20px;
+	user-select: none;
+}
+
+#app-header:hover {
+	font-weight: 400;
 }
 
 #theme-print-row {
@@ -104,7 +114,7 @@ img {
 #display-area {
 	height: calc(var(--height-1));
 	width: calc(var(--height-1) * 0.707);
-	background-color: rgb(255 255 247);
+	background-color: #fcfbfc;
 	border-style: solid;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -134,6 +144,13 @@ img {
 	margin: 0px;
 }
 
+#load-spinner-image {
+	height: 1.5rem;
+	width: 1.5rem;
+	margin: 4px;
+	margin-right: 120px;
+}
+
 .text-color {
 	color: var(--text-col);
 }
@@ -160,10 +177,6 @@ img {
 	transition: 0.7s;
 }
 
-.input-box:hover {
-	transform: scale(1.05);
-}
-
 .yellow-left {
 	border: 1px solid var(--yellow-border-col);
 	border-left: 5px solid var(--yellow-border-col);
@@ -188,11 +201,23 @@ img {
 	background: var(--purple-bg-col);
 }
 
+.purple-left:hover,
+.purple-right:hover {
+	background-color: var(--purple-bg-col-hover);
+	transition: 0.5s;
+}
+
 .orange-inner {
 	margin: 0;
+	margin-bottom: 5px;
 	width: 100%;
-	border: 1px solid #e0a73c;
+	border: 0.5px solid var(--orange-border-col);
 	background: var(--orange-bg-col);
+}
+
+.orange-inner:hover {
+	background-color: var(--orange-bg-col-hover);
+	transition: 0.5s;
 }
 
 .input-header {
@@ -200,6 +225,11 @@ img {
 	font-family: 'Lato';
 	font-size: 18px;
 	font-weight: 600;
+	user-select: none;
+}
+
+.input-header:hover {
+	font-weight: 400;
 }
 
 .text-line {
@@ -258,24 +288,27 @@ img {
 .classSectionHeader {
 	font-size: 0.6rem;
 	text-transform: uppercase;
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-family: 'Josefin Sans', sans-serif;
 	color: #474444;
 	font-weight: 400;
 	margin-bottom: 0.1rem;
 }
 
 .classEntryHeader {
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8px;
 	font-weight: 700;
 	margin-bottom: 2px;
 }
 
 .classEntrySubheader {
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 7px;
 	margin-bottom: 2px;
 }
 
 .classEntryTimeline {
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 6px;
 	color: #474444;
 	font-style: italic;
@@ -283,6 +316,7 @@ img {
 }
 
 .classExpDetailsText {
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 7px;
 	margin-bottom: 2px;
 }
@@ -290,12 +324,14 @@ img {
 .add-btn {
 	justify-content: center;
 	width: 70px;
+	margin: 5px;
 	box-shadow: var(--add-shadow-or-glow);
 }
 
 .delete-button-container {
 	padding-right: 10px;
 }
+
 .delete-btn {
 	justify-content: center;
 	width: 40px;
@@ -313,13 +349,23 @@ img {
 	font-size: 0.8rem;
 }
 
+.form-select:hover {
+	cursor: pointer;
+	background-color: var(--orange-bg-col-hover);
+	transition: 0.5s;
+}
+
+.custom-tooltip {
+	--bs-tooltip-bg: var(--bs-primary);
+}
+
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
 $custom-colors: (
-	'danger': #e4147e,
+	'danger': #ff00e6,
 	'info': #9900ff,
-	'success': #14e478,
+	'success': #14d86b,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
@@ -327,7 +373,15 @@ $form-select-color: (var(--text-col));
 $form-select-bg: (var(--orange-bg-col));
 $form-select-font-size: (0.8rem);
 $btn-padding-x: 8px;
-$form-check-input-checked-bg-color: #9900ff;
-$form-check-input-checked-border-color: #9900ff;
+$form-check-input-checked-bg-color: #f8c3f8;
+$form-check-input-checked-border-color: #f8c3f8;
+$form-check-input-focus-box-shadow: white;
 
 @import '~bootstrap/scss/bootstrap';
+
+.form-switch .form-check-input {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--app-bg-col)'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--app-bg-col)'/%3e%3c/svg%3e");
+}
