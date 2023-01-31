@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { PersonalDataContext } from './B_PER_DATA_INPUT';
+import { PersonalDataContext } from '../2nd-Layer-Input-Elements/PersonalDataInput';
 
-const C_PER_DATA_DISPLAY = () => {
+const PersonalDataDisplay = () => {
 	const { name, title } = useContext(PersonalDataContext);
 	return (
 		<div>
@@ -11,4 +11,4 @@ const C_PER_DATA_DISPLAY = () => {
 	);
 };
 
-export default C_PER_DATA_DISPLAY;
+export default PersonalDataDisplay;

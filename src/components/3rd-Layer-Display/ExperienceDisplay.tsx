@@ -7,7 +7,7 @@ type propsFromParent = {
 	details?: string;
 };
 
-function C_EXPERIENCE_DISPLAY({
+function ExperienceDisplay({
 	header,
 	subheader,
 	timespan,
@@ -23,4 +23,4 @@ function C_EXPERIENCE_DISPLAY({
 	);
 }
 
-export default C_EXPERIENCE_DISPLAY;
+export default ExperienceDisplay;

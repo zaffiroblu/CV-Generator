@@ -8,7 +8,7 @@ type propsFromParent = {
 	socialMedia?: string;
 };
 
-function C_CONTACT_DISPLAY({
+function ContactDisplay({
 	addressLine1,
 	addressLine2,
 	phone,
@@ -26,4 +26,4 @@ function C_CONTACT_DISPLAY({
 	);
 }
 
-export default C_CONTACT_DISPLAY;
+export default ContactDisplay;

@@ -1,4 +1,4 @@
-import { SectionData } from './B_SECTION_INPUT';
+import { SectionData } from './2nd-Layer-Input-Elements/SectionInput';
 
 export type InputDataType = {
 	contactData: {

@@ -7,7 +7,7 @@ export type ImageData = {
 	image: string;
 };
 
-export const B_IMAGE_UPLOAD = ({
+export const ImageInput = ({
 	data,
 	changeData,
 }: {
@@ -21,12 +21,16 @@ export const B_IMAGE_UPLOAD = ({
 	const imageRef = useRef<HTMLInputElement>(null);
 
 	const uploadImage = async (e: any) => {
-		const file = e.target.files[0];
-		setImageSpinner(true);
-		const base64 = await convertBase64(file);
-		setBaseImage(base64);
-		changeData({ image: base64 });
-		setImageSpinner(false);
+		try {
+			const file = e.target.files[0];
+			setImageSpinner(true);
+			const base64 = await convertBase64(file);
+			setBaseImage(base64);
+			changeData({ image: base64 });
+			setImageSpinner(false);
+		} catch (error) {
+			setImageSpinner(false);
+		}
 	};
 
 	const convertBase64 = (file: any) => {

@@ -6,7 +6,7 @@ type propsFromParent = {
 	skillDetails?: string;
 };
 
-function C_SKILLS_DISPLAY({
+function SkillsDisplay({
 	skillHeader,
 	customSkillHeader,
 	skillDetails,
@@ -28,4 +28,4 @@ function C_SKILLS_DISPLAY({
 	);
 }
 
-export default C_SKILLS_DISPLAY;
+export default SkillsDisplay;

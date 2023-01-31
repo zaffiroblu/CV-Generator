@@ -4,7 +4,7 @@ type propsFromParent = {
 	image?: string;
 };
 
-function C_IMAGE_DISPLAY({ image }: propsFromParent) {
+function ImageDisplay({ image }: propsFromParent) {
 	return (
 		<div>
 			<img src={image} height='75px' width='75px' alt='Profile' />
@@ -12,4 +12,4 @@ function C_IMAGE_DISPLAY({ image }: propsFromParent) {
 	);
 }
 
-export default C_IMAGE_DISPLAY;
+export default ImageDisplay;

@@ -1,4 +1,4 @@
-import { B2_EXPERIENCE_INPUT, ExperienceData } from './B2_EXPERIENCE_INPUT';
+import { ExperienceInput, ExperienceData } from './ExperienceInput';
 import { Trash3 } from 'react-bootstrap-icons';
 import { Plus } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
@@ -15,7 +15,7 @@ const emptyExperienceItem: ExperienceData = {
 	details: '',
 };
 
-export const B_SECTION_INPUT = ({
+export const SectionInput = ({
 	sectionData,
 	updateSection,
 	deleteSection,
@@ -44,7 +44,7 @@ export const B_SECTION_INPUT = ({
 				></input>
 				{sectionData.experience.map(
 					(experienceDataItem, experienceDataIndex) => (
-						<B2_EXPERIENCE_INPUT
+						<ExperienceInput
 							key={experienceDataIndex}
 							data={experienceDataItem}
 							changeDataExperience={(newData) =>

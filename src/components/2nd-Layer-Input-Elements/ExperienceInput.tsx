@@ -8,7 +8,7 @@ export type ExperienceData = {
 	details: string;
 };
 
-export const B2_EXPERIENCE_INPUT = ({
+export const ExperienceInput = ({
 	data,
 	changeDataExperience,
 	deleteExperience,

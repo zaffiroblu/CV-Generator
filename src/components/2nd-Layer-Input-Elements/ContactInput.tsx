@@ -6,7 +6,7 @@ export type ContactData = {
 	socialMedia: string;
 };
 
-export const B_CONTACT_INPUT = ({
+export const ContactInput = ({
 	data,
 	changeData,
 }: {

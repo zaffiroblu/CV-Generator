@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 export type PersonalData = {
 	name: string;
@@ -10,7 +10,7 @@ export const PersonalDataContext = createContext<PersonalData>({
 	title: '',
 });
 
-export const B_PER_DATA_INPUT = ({
+export const PersonalDataInput = ({
 	setData,
 }: {
 	setData: (data: PersonalData) => void;

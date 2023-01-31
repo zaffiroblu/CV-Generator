@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { ContactData } from './B_CONTACT_INPUT';
-import { SkillsData } from './B_SKILLS_INPUT';
-import { SectionData } from './B_SECTION_INPUT';
-import { ImageData } from './B_IMAGE_UPLOAD';
-import { B2_PRINT_COMPONENT } from './B2_PRINT_COMPONENT';
+import { ContactData } from '../2nd-Layer-Input-Elements/ContactInput';
+import { SkillsData } from '../2nd-Layer-Input-Elements/SkillsInput';
+import { SectionData } from '../2nd-Layer-Input-Elements/SectionInput';
+import { ImageData } from '../2nd-Layer-Input-Elements/ImageInput';
+import { PrintPortionCVDisplay } from './PrintPortionCVDisplay';
 import exportAsImage from './exportAsImage';
 import Button from 'react-bootstrap/Button';
 
@@ -14,7 +14,7 @@ export type CVDataType = {
 	imageData: ImageData;
 };
 
-function B_CV_PREVIEW(props: CVDataType) {
+function CVPreview(props: CVDataType) {
 	const exportRef = useRef<HTMLInputElement>(null);
 	const [captureSpinner, setCaptureSpinner] = useState(false);
 
@@ -27,7 +27,7 @@ function B_CV_PREVIEW(props: CVDataType) {
 	return (
 		<div>
 			<div className='d-flex flex-row' id='display-area' ref={exportRef}>
-				<B2_PRINT_COMPONENT {...props} />
+				<PrintPortionCVDisplay {...props} />
 			</div>
 			<div className='d-flex flex-row justify-content-end mx-4'>
 				{captureSpinner === true ? (
@@ -51,4 +51,4 @@ function B_CV_PREVIEW(props: CVDataType) {
 	);
 }
 
-export default B_CV_PREVIEW;
+export default CVPreview;

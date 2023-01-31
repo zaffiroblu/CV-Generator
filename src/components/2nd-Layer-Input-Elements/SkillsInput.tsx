@@ -7,7 +7,7 @@ export type SkillsData = {
 	skillDetails: string;
 };
 
-export const B_SKILLS_INPUT = ({
+export const SkillsInput = ({
 	data,
 	changeData,
 	deleteData,

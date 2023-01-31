@@ -1,11 +1,11 @@
-import { CVDataType } from './B_CV_PREVIEW';
-import C_PER_DATA_DISPLAY from './C_PER_DATA_DISPLAY';
-import C_CONTACT_DISPLAY from './C_CONTACT_DISPLAY';
-import C_SKILLS_DISPLAY from './C_SKILLS_DISPLAY';
-import C_SECTION_DISPLAY from './C_SECTION_DISPLAY';
-import C_IMAGE_DISPLAY from './C_IMAGE_DISPLAY';
+import { CVDataType } from './CVPreview';
+import PersonalDataDisplay from './PersonalDataDisplay';
+import ContactDisplay from './ContactDisplay';
+import SkillsDisplay from './SkillsDisplay';
+import SectionDisplay from './SectionDisplay';
+import ImageDisplay from './ImageDisplay';
 
-export const B2_PRINT_COMPONENT = (props: CVDataType) => {
+export const PrintPortionCVDisplay = (props: CVDataType) => {
 	return (
 		<div>
 			<div className='d-flex flex-row' id='print-area'>
@@ -13,9 +13,9 @@ export const B2_PRINT_COMPONENT = (props: CVDataType) => {
 					className='d-flex flex-column align-items-start'
 					id='display-area-left'
 				>
-					<C_PER_DATA_DISPLAY />
+					<PersonalDataDisplay />
 					{props.sections.map((sectionDataItem, sectionDataIndex) => (
-						<C_SECTION_DISPLAY
+						<SectionDisplay
 							key={sectionDataIndex}
 							{...sectionDataItem}
 						/>
@@ -26,11 +26,11 @@ export const B2_PRINT_COMPONENT = (props: CVDataType) => {
 					id='display-area-right'
 				>
 					{props.imageData.image !== '' ? (
-						<C_IMAGE_DISPLAY {...props.imageData} />
+						<ImageDisplay {...props.imageData} />
 					) : null}
-					<C_CONTACT_DISPLAY {...props.contactData} />
+					<ContactDisplay {...props.contactData} />
 					{props.skillData.map((skillDataItem, skillDataIndex) => (
-						<C_SKILLS_DISPLAY
+						<SkillsDisplay
 							key={skillDataIndex}
 							{...skillDataItem}
 						/>

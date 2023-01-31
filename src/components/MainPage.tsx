@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import B_CV_PREVIEW from './B_CV_PREVIEW';
+import CVPreview from './3rd-Layer-Display/CVPreview';
 import {
-	B_PER_DATA_INPUT,
+	PersonalDataInput,
 	PersonalData,
 	PersonalDataContext,
-} from './B_PER_DATA_INPUT';
-import { B_CONTACT_INPUT } from './B_CONTACT_INPUT';
-import { B_SKILLS_INPUT } from './B_SKILLS_INPUT';
-import { B_SECTION_INPUT } from './B_SECTION_INPUT';
-import { B_IMAGE_UPLOAD } from './B_IMAGE_UPLOAD';
+} from './2nd-Layer-Input-Elements/PersonalDataInput';
+import { ContactInput } from './2nd-Layer-Input-Elements/ContactInput';
+import { SkillsInput } from './2nd-Layer-Input-Elements/SkillsInput';
+import { SectionInput } from './2nd-Layer-Input-Elements/SectionInput';
+import { ImageInput } from './2nd-Layer-Input-Elements/ImageInput';
 import { InputDataType } from './InputDataType';
 import Button from 'react-bootstrap/Button';
 import { Plus } from 'react-bootstrap-icons';
 
-export const A_INPUT = () => {
+export const MainPage = () => {
 	const [personalData, setPersonalData] = useState<PersonalData>({
 		name: '',
 		title: '',
@@ -57,6 +57,19 @@ export const A_INPUT = () => {
 		});
 	};
 
+	// Example: I want to add a new SkillsData section to the CV.
+	// I click the "add" button below, then the function above gets sent these arguments: [skillDataGroup],'skillData'
+
+	// const addItemsToArray = <I am defining a 'PropertyNameType', that CAN SIMPLY ACCEPT the STRINGS!: 'skillData' | 'sections'>(
+	// 	items: the first argument gets data that has the TYPE structure: 'InputDataType.skillData', (or InputDataType.section)
+	// 	propertyName: the second argument is a PropertyNameType (which I just said is either the STRINGS 'skillData' or 'sections')
+	// ) => {
+	// 	setInputData({
+	// 		...inputData (Everything in the array),
+	// 		skillData: [...inputData.skillData (this copies ALL the other skillData entries), ...skillDataGroup (this adds a new SkillDataGroup, a group defined separately from the state hook.)],
+	// 	});
+	// };
+
 	const changeStateSlice = <
 		PropertyNameType extends 'contactData' | 'imageData'
 	>(
@@ -71,6 +84,32 @@ export const A_INPUT = () => {
 			},
 		}));
 	};
+
+	// Next example: I am entering my phone number into the appropriate field, starting with '+'.
+	// ContactData is a simple object (not an array of objects -- for that, see the next function!)
+	// On the Contact Display page, the "<p className='classSidebarText'>{phone}</p>" receives the '+' and
+	// sends the info back to this main page through this function, within the component under return:
+	// changeData={(newContactData which is something like 'phone: +') =>
+	// 	changeStateSlice(
+	// 		newContactData, which is 'phone: +',
+	// 		'contactData'
+	// 	)
+	// Then the function above looks like this:
+	//
+	// 	const changeStateSlice = <
+	// 	PropertyNameType extends 'contactData' | 'imageData'
+	// >(
+	// 	newData: Partial<InputDataType.contactData>,
+	// 	propertyName: contactData
+	// ) => {
+	// 	setInputData((inputData) => ({
+	// 		...inputData,
+	// 		contactData: {
+	// 			...inputData.contactData,
+	// 			...phone: '+',
+	// 		},
+	// 	}));
+	// };
 
 	const changeInputData = <
 		PropertyNameType3 extends 'skillData' | 'sections'
@@ -95,6 +134,74 @@ export const A_INPUT = () => {
 		});
 	};
 
+	// Example: I have 2 sections, Experience and Education, and in Education,
+	// and in Education, "Fu Berlin" and "Brevard Community College."
+	// I enter "October 2012" into "timespan" of FU Berlin.
+	// In the "ExperienceInput" component,
+	// we have "timespan: 'October 2012'", which is then sent to the parent Section Input, which
+	// sticks it into this function as so:
+	//
+	// {sectionData.experience.map(
+	// 	(experienceDataItem 1st 2nd, experienceDataIndex 1 2) => (
+	// 		<ExperienceInput
+	// 			key={experienceDataIndex}
+	// 			data={experienceDataItem}
+	// changeDataExperience={(newData sectionData.experience[1].timespan: 'October 2012'") =>
+	// 	updateSection({
+	// 		experience: sectionData.experience.map(
+	// 			(dataItem, dataItemIndex) => {
+	// 				if (
+	// 					dataItemIndex !==
+	// 					experienceDataIndex
+	// 				) {
+	// 					return dataItem;
+	// 				}
+	// 				return {
+	// 					...dataItem,
+	// 					...newData,
+	// 				};
+	// 			}
+	// 		),
+	// 	})
+	// So that returns the first experience group (Fu Berlin) and and "timespan: 'October 2012'"
+	// to "Update Section function on the main page:
+	//
+	// {inputData.sections.map(
+	// 	(sectionDataItem, sectionDataIndex) => (
+	// 		<SectionInput
+	// 			key={sectionDataIndex}
+	// 			sectionData={sectionDataItem}
+	// 			updateSection={(newData) =>
+	// 				changeInputData(
+	// 					'sections' (a string),
+	// 					newData(which is the 1st 'FU' object (the 1st experience) and includes "timeline: October 2012"),
+	// 					sectionDataIndex, which is 2
+	// 				)
+	// 			}
+	// Then FINALLY we are at the function we see above:
+	// 	const changeInputData = <
+	// 	PropertyNameType3 extends 'skillData' | 'sections'
+	// >(
+	// 	propertyName: PropertyNameType3,
+	// 	newData: object,
+	// 	dataIndex: number
+	// ) => {
+	// 	setInputData({
+	// 		...inputData,
+	// 		sections: inputData.sections.map(
+	// 			(dataItem, dataItemIndex) => {
+	// 				if (dataItemIndex !== dataIndex) {
+	// 					return dataItem;
+	// 				}
+	// 				return {
+	// 					...dataItem,
+	// 					...newData,
+	// 				};
+	// 			}
+	// 		),
+	// 	});
+	// };
+
 	const deleteDataFunction = <PropertyNameType2 extends 'skillData'>(
 		dataIndex: number,
 		propertyName: PropertyNameType2
@@ -108,9 +215,28 @@ export const A_INPUT = () => {
 		}));
 	};
 
+	//Example: I want to delete the 1st skill data section (and I already added a second one).
+	// After pushing the trashcan icon below on the said data section, the function above gets sent :
+	// skillDataIndex,'skillData'.
+	// const deleteDataFunction = <PropertyNameType2 extends 'skillData'>(
+	// 	dataIndex: number, which is 2
+	// 	propertyName: skillData
+	// ) => {
+	// 	setInputData((inputData) => ({
+	// 		...inputData,
+	// 		skillData: inputData.skillData.filter(
+	// 			(_, dataItemIndexToDelete) =>
+	// 				dataItemIndexToDelete !== dataIndex
+	// 		),
+	// 	}));
+	// };
+
 	return (
 		<PersonalDataContext.Provider value={personalData}>
-			<div className='d-flex flex-column' id='app-main'>
+			<div
+				className='d-flex flex-column justify-content-center'
+				id='app-main'
+			>
 				<h1
 					className='d-flex justify-content-center font-effect-neon'
 					id='app-header'
@@ -124,8 +250,8 @@ export const A_INPUT = () => {
 							<h5 className='input-header font-effect-neon'>
 								Personal Information
 							</h5>
-							<B_PER_DATA_INPUT setData={setPersonalData} />
-							<B_CONTACT_INPUT
+							<PersonalDataInput setData={setPersonalData} />
+							<ContactInput
 								data={inputData.contactData}
 								changeData={(newContactData) =>
 									changeStateSlice(
@@ -138,7 +264,7 @@ export const A_INPUT = () => {
 						<div>
 							{inputData.sections.map(
 								(sectionDataItem, sectionDataIndex) => (
-									<B_SECTION_INPUT
+									<SectionInput
 										key={sectionDataIndex}
 										sectionData={sectionDataItem}
 										updateSection={(newData) =>
@@ -177,7 +303,7 @@ export const A_INPUT = () => {
 							</Button>
 						</div>
 					</div>
-					<B_CV_PREVIEW {...inputData} />
+					<CVPreview {...inputData} />
 					<div className='right-column'>
 						<div className='d-flex justify-content-center theme-switch'>
 							<div className='mx-2 text-color'>dark mode</div>
@@ -197,7 +323,7 @@ export const A_INPUT = () => {
 						</div>
 						<div className='input-area'>
 							<div className='input-box purple-right'>
-								<B_IMAGE_UPLOAD
+								<ImageInput
 									data={inputData.imageData}
 									changeData={(newImageData) => {
 										changeStateSlice(
@@ -213,7 +339,7 @@ export const A_INPUT = () => {
 								</h5>
 								{inputData.skillData.map(
 									(skillDataItem, skillDataIndex) => (
-										<B_SKILLS_INPUT
+										<SkillsInput
 											key={skillDataIndex}
 											data={skillDataItem}
 											changeData={(newData) =>
@@ -254,4 +380,4 @@ export const A_INPUT = () => {
 	);
 };
 
-export default A_INPUT;
+export default MainPage;

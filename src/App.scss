@@ -1,6 +1,7 @@
 :root {
-	--height-1: 550px;
+	--height-1: 600px;
 	--height-2: 100vh;
+	--height-3: 80vh;
 	--width-1: 66%;
 
 	//Color themes
@@ -20,12 +21,12 @@
 
 	.light-theme {
 		--app-bg-col: linear-gradient(
-			to top,
-			#faf4ff,
-			#f9f4fc,
-			#f8f3f9,
-			#f6f3f6,
-			#f4f3f4
+			to right top,
+			#f1e4fb,
+			#f0e2f7,
+			#efe1f3,
+			#eddfef,
+			#ebdeeb
 		);
 		--text-col: black;
 		--yellow-bg-col: rgb(252 252 245);
@@ -95,7 +96,7 @@ img {
 	font-family: 'Lato', Arial, Helvetica, sans-serif;
 	font-size: 35px;
 	font-weight: 700;
-	padding: 5px;
+	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 20px;
 	user-select: none;
@@ -115,7 +116,6 @@ img {
 	height: calc(var(--height-1));
 	width: calc(var(--height-1) * 0.707);
 	background-color: #fcfbfc;
-	border-style: solid;
 	margin-left: 10px;
 	margin-right: 10px;
 	word-break: break-word;
@@ -157,9 +157,8 @@ img {
 
 .input-area {
 	height: calc(var(--height-1));
-	overflow-y: scroll;
+	overflow-y: visible;
 	overflow-x: hidden;
-	height: calc(var(--height-1));
 }
 
 // Below is the CSS code for the input boxes.
@@ -167,7 +166,7 @@ img {
 	display: flex;
 	flex-direction: column;
 	color: var(--text-col);
-	width: 250px;
+	width: 245px;
 	border-radius: 5px;
 	margin: 15px;
 	margin-top: 0px;
@@ -266,7 +265,7 @@ img {
 
 .CV-subheader {
 	font-size: 0.7rem;
-	margin-bottom: 0.7rem;
+	margin-bottom: 0.5rem;
 }
 
 .classSidebarHeader {
@@ -292,6 +291,7 @@ img {
 	color: #474444;
 	font-weight: 400;
 	margin-bottom: 0.1rem;
+	margin-top: 0.3rem;
 }
 
 .classEntryHeader {
@@ -357,6 +357,51 @@ img {
 
 .custom-tooltip {
 	--bs-tooltip-bg: var(--bs-primary);
+}
+
+@media screen and (min-width: 1400px) {
+	#app-header {
+		font-size: 50px;
+		padding: 30px;
+	}
+	.input-box {
+		width: 300px;
+	}
+
+	.orange-inner {
+		width: 100%;
+	}
+	.text-line {
+		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	#app-main {
+		overflow-y: scroll;
+		overflow-x: scroll;
+	}
+	#app-header {
+		font-size: 18px;
+		padding: 10px;
+	}
+
+	.theme-switch {
+		font-size: 0.7rem;
+	}
+
+	.input-box {
+		width: 175px;
+		overflow-y: scroll;
+		overflow-x: scroll;
+	}
+
+	.orange-inner {
+		width: 100%;
+	}
+	.text-line {
+		font-size: 0.4rem;
+	}
 }
 
 @import '~bootstrap/scss/functions';
