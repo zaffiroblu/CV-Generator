@@ -1,6 +1,9 @@
 import { Trash3 } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 
+// This is the component that renders the skill input fields
+// which are on the lower-right part of the page.
+
 export type SkillsData = {
 	skillHeader: string;
 	customSkillHeader: string;

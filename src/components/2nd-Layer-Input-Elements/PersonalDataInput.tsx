@@ -1,5 +1,8 @@
 import { createContext, useContext } from 'react';
 
+// This is the component that renders the first two personal data input fields
+// in the upper-left part of the page.
+
 export type PersonalData = {
 	name: string;
 	title: string;

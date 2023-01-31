@@ -14,12 +14,19 @@ import { InputDataType } from './InputDataType';
 import Button from 'react-bootstrap/Button';
 import { Plus } from 'react-bootstrap-icons';
 
+// Welcome to the code for my CV App!
+
 export const MainPage = () => {
+	// The typing of this state was a practice for using a context provider --
+	//see code below, directly under "return".
+	// I only do this for "Personal Data" input fields.
 	const [personalData, setPersonalData] = useState<PersonalData>({
 		name: '',
 		title: '',
 	});
 
+	// The rest of the input fields are kept in this state, and do not use
+	// context providers to supply the component with prop information.
 	const [inputData, setInputData] = useState<InputDataType>({
 		contactData: {
 			addressLine1: '',
@@ -39,6 +46,8 @@ export const MainPage = () => {
 		imageData: { image: '' },
 	});
 
+	// "skillDataGroup" and "sectionDataGroup" allow new objects
+	// to be added to the 'inputData' state directly above.
 	const skillDataGroup = {
 		skillHeader: '',
 		customSkillHeader: '',
@@ -47,6 +56,8 @@ export const MainPage = () => {
 
 	const sectionDataGroup = { sectionHeader: '', experience: [] };
 
+	// This allows new "skill data groups" and "section groups", defined directly above,
+	// to be added to the state when the user clicks the add/+ button in the DOM.
 	const addItemsToArray = <PropertyNameType extends 'skillData' | 'sections'>(
 		items: InputDataType[PropertyNameType],
 		propertyName: PropertyNameType
@@ -57,19 +68,8 @@ export const MainPage = () => {
 		});
 	};
 
-	// Example: I want to add a new SkillsData section to the CV.
-	// I click the "add" button below, then the function above gets sent these arguments: [skillDataGroup],'skillData'
-
-	// const addItemsToArray = <I am defining a 'PropertyNameType', that CAN SIMPLY ACCEPT the STRINGS!: 'skillData' | 'sections'>(
-	// 	items: the first argument gets data that has the TYPE structure: 'InputDataType.skillData', (or InputDataType.section)
-	// 	propertyName: the second argument is a PropertyNameType (which I just said is either the STRINGS 'skillData' or 'sections')
-	// ) => {
-	// 	setInputData({
-	// 		...inputData (Everything in the array),
-	// 		skillData: [...inputData.skillData (this copies ALL the other skillData entries), ...skillDataGroup (this adds a new SkillDataGroup, a group defined separately from the state hook.)],
-	// 	});
-	// };
-
+	// This function accepts changes for the 'contactData' and 'imageData'
+	// input fields and updates the state here on the main page.
 	const changeStateSlice = <
 		PropertyNameType extends 'contactData' | 'imageData'
 	>(
@@ -85,31 +85,10 @@ export const MainPage = () => {
 		}));
 	};
 
-	// Next example: I am entering my phone number into the appropriate field, starting with '+'.
-	// ContactData is a simple object (not an array of objects -- for that, see the next function!)
-	// On the Contact Display page, the "<p className='classSidebarText'>{phone}</p>" receives the '+' and
-	// sends the info back to this main page through this function, within the component under return:
-	// changeData={(newContactData which is something like 'phone: +') =>
-	// 	changeStateSlice(
-	// 		newContactData, which is 'phone: +',
-	// 		'contactData'
-	// 	)
-	// Then the function above looks like this:
-	//
-	// 	const changeStateSlice = <
-	// 	PropertyNameType extends 'contactData' | 'imageData'
-	// >(
-	// 	newData: Partial<InputDataType.contactData>,
-	// 	propertyName: contactData
-	// ) => {
-	// 	setInputData((inputData) => ({
-	// 		...inputData,
-	// 		contactData: {
-	// 			...inputData.contactData,
-	// 			...phone: '+',
-	// 		},
-	// 	}));
-	// };
+	// This function has the same purpose as the function above it, only it
+	// accepts changes for the input fields in 'skillData' and 'sections.'
+	// I created a new function for these two, because they have a more complex
+	// data structure -- they are arrays of objects rather than just objects.
 
 	const changeInputData = <
 		PropertyNameType3 extends 'skillData' | 'sections'
@@ -134,74 +113,9 @@ export const MainPage = () => {
 		});
 	};
 
-	// Example: I have 2 sections, Experience and Education, and in Education,
-	// and in Education, "Fu Berlin" and "Brevard Community College."
-	// I enter "October 2012" into "timespan" of FU Berlin.
-	// In the "ExperienceInput" component,
-	// we have "timespan: 'October 2012'", which is then sent to the parent Section Input, which
-	// sticks it into this function as so:
-	//
-	// {sectionData.experience.map(
-	// 	(experienceDataItem 1st 2nd, experienceDataIndex 1 2) => (
-	// 		<ExperienceInput
-	// 			key={experienceDataIndex}
-	// 			data={experienceDataItem}
-	// changeDataExperience={(newData sectionData.experience[1].timespan: 'October 2012'") =>
-	// 	updateSection({
-	// 		experience: sectionData.experience.map(
-	// 			(dataItem, dataItemIndex) => {
-	// 				if (
-	// 					dataItemIndex !==
-	// 					experienceDataIndex
-	// 				) {
-	// 					return dataItem;
-	// 				}
-	// 				return {
-	// 					...dataItem,
-	// 					...newData,
-	// 				};
-	// 			}
-	// 		),
-	// 	})
-	// So that returns the first experience group (Fu Berlin) and and "timespan: 'October 2012'"
-	// to "Update Section function on the main page:
-	//
-	// {inputData.sections.map(
-	// 	(sectionDataItem, sectionDataIndex) => (
-	// 		<SectionInput
-	// 			key={sectionDataIndex}
-	// 			sectionData={sectionDataItem}
-	// 			updateSection={(newData) =>
-	// 				changeInputData(
-	// 					'sections' (a string),
-	// 					newData(which is the 1st 'FU' object (the 1st experience) and includes "timeline: October 2012"),
-	// 					sectionDataIndex, which is 2
-	// 				)
-	// 			}
-	// Then FINALLY we are at the function we see above:
-	// 	const changeInputData = <
-	// 	PropertyNameType3 extends 'skillData' | 'sections'
-	// >(
-	// 	propertyName: PropertyNameType3,
-	// 	newData: object,
-	// 	dataIndex: number
-	// ) => {
-	// 	setInputData({
-	// 		...inputData,
-	// 		sections: inputData.sections.map(
-	// 			(dataItem, dataItemIndex) => {
-	// 				if (dataItemIndex !== dataIndex) {
-	// 					return dataItem;
-	// 				}
-	// 				return {
-	// 					...dataItem,
-	// 					...newData,
-	// 				};
-	// 			}
-	// 		),
-	// 	});
-	// };
-
+	// This function allows the user to delete skill sections.
+	// The functionality for deleting the experience sections is found in
+	// the "SectionInput" component.
 	const deleteDataFunction = <PropertyNameType2 extends 'skillData'>(
 		dataIndex: number,
 		propertyName: PropertyNameType2
@@ -215,23 +129,9 @@ export const MainPage = () => {
 		}));
 	};
 
-	//Example: I want to delete the 1st skill data section (and I already added a second one).
-	// After pushing the trashcan icon below on the said data section, the function above gets sent :
-	// skillDataIndex,'skillData'.
-	// const deleteDataFunction = <PropertyNameType2 extends 'skillData'>(
-	// 	dataIndex: number, which is 2
-	// 	propertyName: skillData
-	// ) => {
-	// 	setInputData((inputData) => ({
-	// 		...inputData,
-	// 		skillData: inputData.skillData.filter(
-	// 			(_, dataItemIndexToDelete) =>
-	// 				dataItemIndexToDelete !== dataIndex
-	// 		),
-	// 	}));
-	// };
-
 	return (
+		// Here is the context provider mentioned above -- It's here only for PersonalData,
+		// so I can practice how to provide and consume a context in Typescript/React.
 		<PersonalDataContext.Provider value={personalData}>
 			<div
 				className='d-flex flex-column justify-content-center'

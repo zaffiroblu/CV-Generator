@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Trash3 } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
+
+// This is the component that renders the image input section,
+// found on the upper-right part of the page.
 
 export type ImageData = {
 	image: string;
@@ -33,6 +36,8 @@ export const ImageInput = ({
 		}
 	};
 
+	// This is a bit of code I found on Google for converting
+	// the uploaded image to base24 as a method for condensing large files.
 	const convertBase64 = (file: any) => {
 		return new Promise<string>((resolve, reject) => {
 			const fileReader = new FileReader();

@@ -6,6 +6,10 @@ export type ContactData = {
 	socialMedia: string;
 };
 
+// This is the component that renders the contact data input fields
+// in the DOM. They are found under "Personal Data" on the upper
+// left-hand side of the page.
+
 export const ContactInput = ({
 	data,
 	changeData,

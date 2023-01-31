@@ -1,5 +1,8 @@
 import React from 'react';
 
+// This component renders the uploaded image and
+// displays it within the CV preview in the middle of the page.
+
 type propsFromParent = {
 	image?: string;
 };

@@ -7,6 +7,9 @@ import { PrintPortionCVDisplay } from './PrintPortionCVDisplay';
 import exportAsImage from './exportAsImage';
 import Button from 'react-bootstrap/Button';
 
+// This component renders the CV preview you see in the middle between
+// the input sections.
+
 export type CVDataType = {
 	contactData: ContactData;
 	skillData: SkillsData[];

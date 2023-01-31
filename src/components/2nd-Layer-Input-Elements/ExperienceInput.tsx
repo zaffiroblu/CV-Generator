@@ -1,6 +1,10 @@
 import { Trash3 } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 
+// This is the component that renders the experience input fields.
+// These are the orange sections under the "Experience Sections"
+// on the lower-left side of the page.
+
 export type ExperienceData = {
 	header: string;
 	subheader: string;

@@ -5,6 +5,10 @@ import SkillsDisplay from './SkillsDisplay';
 import SectionDisplay from './SectionDisplay';
 import ImageDisplay from './ImageDisplay';
 
+// All of the elements in this component will be exported as a jpeg
+// when the user clicks the "Capture" button under the CV preview
+// on the bottom-middle part of the page.
+
 export const PrintPortionCVDisplay = (props: CVDataType) => {
 	return (
 		<div>

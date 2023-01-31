@@ -1,5 +1,9 @@
 import React from 'react';
 
+// This component renders the information from the 'experience' inputs
+// and displays them in their proper place within the CV preview
+// in the middle of the page.
+
 type propsFromParent = {
 	header?: string;
 	subheader?: string;

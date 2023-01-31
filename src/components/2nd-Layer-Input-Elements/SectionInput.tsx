@@ -3,6 +3,10 @@ import { Trash3 } from 'react-bootstrap-icons';
 import { Plus } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 
+// This is the component that renders the experience section inputs,
+// which are found in the lower-left part of the page.
+// These house one or more "experience" sections (a separate component).
+
 export type SectionData = {
 	sectionHeader: string;
 	experience: ExperienceData[];

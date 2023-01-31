@@ -29,8 +29,8 @@
 			#ebdeeb
 		);
 		--text-col: black;
-		--yellow-bg-col: rgb(252 252 245);
-		--yellow-border-col: #e6c926;
+		// --yellow-bg-col: rgb(252 252 245);
+		// --yellow-border-col: #e6c926;
 		--purple-border-col: #c166ff;
 		--purple-bg-col: #f5f3f5;
 		--purple-bg-col-hover: #f2e6fc;
@@ -43,27 +43,36 @@
 	}
 }
 
-/* width */
+#app-main {
+	background: var(--app-bg-col);
+	min-height: 100vh;
+	transition: 0.7s;
+}
+
+#delete-margin {
+	margin: 0px;
+}
+
+/*-*-*-*-*-*- Scroll bar styling *-*-*-*-*-*-*/
 ::-webkit-scrollbar {
 	width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 5px grey;
 	border-radius: 10px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
 	background: var(--scroll-bar-col);
 	border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: var(--scroll-bar-col-active);
 }
+
+/*-*-*-*-*-*- Font and element styling *-*-*-*-*-*-*/
 
 label {
 	font-size: 0.8rem;
@@ -85,12 +94,6 @@ img {
 	box-shadow: 2px 3px 12px -5px #000000;
 }
 
-#app-main {
-	background: var(--app-bg-col);
-	min-height: 100vh;
-	transition: 0.7s;
-}
-
 #app-header {
 	color: var(--text-col);
 	font-family: 'Lato', Arial, Helvetica, sans-serif;
@@ -106,11 +109,37 @@ img {
 	font-weight: 400;
 }
 
-#theme-print-row {
+.text-color {
 	color: var(--text-col);
-	margin-right: 100px;
-	margin-left: 75px;
 }
+
+.input-header {
+	color: var(--text-col);
+	font-family: 'Lato';
+	font-size: 18px;
+	font-weight: 600;
+	user-select: none;
+}
+
+.input-header:hover {
+	font-weight: 400;
+}
+
+.text-line {
+	background-color: transparent;
+	height: auto;
+	width: 100%;
+	font-size: 0.8rem;
+	color: var(--text-col);
+	outline: none;
+	outline-style: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: solid var(--text-col) 1px;
+}
+
+/*-*-*-*-*-*- Input displays and CV preview display *-*-*-*-*-*-*/
 
 #display-area {
 	height: calc(var(--height-1));
@@ -140,19 +169,11 @@ img {
 	overflow: hidden;
 }
 
-#delete-margin {
-	margin: 0px;
-}
-
 #load-spinner-image {
 	height: 1.5rem;
 	width: 1.5rem;
 	margin: 4px;
 	margin-right: 120px;
-}
-
-.text-color {
-	color: var(--text-col);
 }
 
 .input-area {
@@ -161,7 +182,7 @@ img {
 	overflow-x: hidden;
 }
 
-// Below is the CSS code for the input boxes.
+/*-*-*-*-*-*- Input boxes *-*-*-*-*-*-*/
 .input-box {
 	display: flex;
 	flex-direction: column;
@@ -174,18 +195,6 @@ img {
 	gap: 5px;
 	box-shadow: var(--add-shadow-or-glow);
 	transition: 0.7s;
-}
-
-.yellow-left {
-	border: 1px solid var(--yellow-border-col);
-	border-left: 5px solid var(--yellow-border-col);
-	background: var(--yellow-bg-col);
-}
-
-.yellow-right {
-	border: 1px solid var(--yellow-border-col);
-	border-right: 5px solid var(--yellow-border-col);
-	background: var(--yellow-bg-col);
 }
 
 .purple-left {
@@ -219,31 +228,7 @@ img {
 	transition: 0.5s;
 }
 
-.input-header {
-	color: var(--text-col);
-	font-family: 'Lato';
-	font-size: 18px;
-	font-weight: 600;
-	user-select: none;
-}
-
-.input-header:hover {
-	font-weight: 400;
-}
-
-.text-line {
-	background-color: transparent;
-	height: auto;
-	width: 100%;
-	font-size: 0.8rem;
-	color: var(--text-col);
-	outline: none;
-	outline-style: none;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom: solid var(--text-col) 1px;
-}
+/*-*-*-*-*-*- Right column and theme switch *-*-*-*-*-*-*/
 
 .right-column {
 	position: relative;
@@ -256,7 +241,7 @@ img {
 	right: 0px;
 }
 
-// This is for the layout of the CV
+/*-*-*-*-*-*- CV preview display *-*-*-*-*-*-*/
 .CV-header {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 1.3rem;
@@ -321,6 +306,8 @@ img {
 	margin-bottom: 2px;
 }
 
+/*-*-*-*-*-*- Buttons *-*-*-*-*-*-*/
+
 .add-btn {
 	justify-content: center;
 	width: 70px;
@@ -359,6 +346,8 @@ img {
 	--bs-tooltip-bg: var(--bs-primary);
 }
 
+/*-*-*-*-*-*- Breakpoint min-width 1400px *-*-*-*-*-*-*/
+
 @media screen and (min-width: 1400px) {
 	#app-header {
 		font-size: 50px;
@@ -375,6 +364,8 @@ img {
 		font-size: 1rem;
 	}
 }
+
+/*-*-*-*-*-*- Breakpoint max-width 1000px *-*-*-*-*-*-*/
 
 @media screen and (max-width: 1000px) {
 	#app-main {
@@ -424,9 +415,9 @@ $form-check-input-focus-box-shadow: white;
 
 @import '~bootstrap/scss/bootstrap';
 
-.form-switch .form-check-input {
-	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--app-bg-col)'/%3e%3c/svg%3e");
-}
-.form-switch .form-check-input:focus {
-	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--app-bg-col)'/%3e%3c/svg%3e");
-}
+// .form-switch .form-check-input {
+// 	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--app-bg-col)'/%3e%3c/svg%3e");
+// }
+// .form-switch .form-check-input:focus {
+// 	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var(--app-bg-col)'/%3e%3c/svg%3e");
+// }
